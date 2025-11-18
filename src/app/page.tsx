@@ -1,19 +1,33 @@
 "use client";
-import Link from "next/link";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
+import AppLayout from "@/components/AppLayout";
+import PageContainer from "@/components/PageContainer";
 
 const upliftingQuotes = [
-	"Every rejection is a step closer to the right opportunity! 🌟",
-	"You're not being rejected - you're being redirected to something better! ✨",
-	"The best is yet to come, and it's coming soon! 🚀",
-	"Today's 'no' is tomorrow's 'thank goodness that didn't work out'! 💫",
-	"You're exactly where you need to be in your journey! 🌈",
-	"Every closed door is making room for the perfect one to open! 🚪",
-	"Your dream job is out there, and it's looking for you too! 💝",
-	"Plot twist: This rejection just saved you from the wrong place! 🎭",
-	"You're collecting experiences, not failures! 📚",
-	"The universe is just making sure you're ready for something amazing! 🌌",
+	"Ett 'nej' är bara data. Det säger ingenting om ditt värde eller ditt nästa 'ja'.",
+	"Det kommer att vända. Det kanske inte känns så nu, men det kommer att vända.",
+	"Dagens 'nej' är väldigt ofta morgondagens 'tur att det inte blev så'.",
+	"Du samlar erfarenheter, inte misslyckanden.",
+	"Ditt CV är ett dokument. Du är kompetensen.",
+	"Du söker ett jobb. Du ber inte om en allmosa.",
+	"Varje ansökan du skickar är ett bevis på din uthållighet. Det är en superkraft. 💪",
+	"Glöm inte: Du intervjuar dem precis lika mycket som de intervjuar dig.",
+	"Ta en paus. Stäng datorn. Det här är en mara, inte en sprint.",
+	"Att söka jobb är ett heltidsjobb i sig. Ett du dessutom gör gratis. Var stolt över din uthållighet.",
+	"Kom ihåg: Du har klarat 100% av dina svåraste dagar hittills. Du klarar den här också.",
+	"Någon där ute letar *exakt* efter din unika mix av kompetens och personlighet. Ditt jobb är att fortsätta vara synlig.",
+	"Det handlar inte om att hitta *ett* jobb. Det handlar om att hitta *rätt* jobb. Ett 'nej' från fel ställe är en vinst.",
+	"Det enda 'ja' du behöver är det som faktiskt känns rätt i magen. Låt alla andra 'nej' passera.",
+	"Ditt värde mäts inte i antal svar, utan i kvaliteten på det arbete du *kan* utföra.",
+	"Viktig påminnelse: Du är smart, du är kapabel och du förtjänar en bra arbetsplats. ✨",
+	"Var snäll mot dig själv. Du gör ditt bästa i en riktigt tuff situation. ❤️",
+	"Du är mer än ditt CV. Du är mer än din jobbtitel.",
+	"En paus är inte att ge upp. Det är att ladda om. 🔋",
+	"Någonstans finns en arbetsgivare som kommer att ha *turen* att få dig. Glöm inte det.",
+	"Din kompetens och dina erfarenheter är 100% verkliga. De försvinner inte av ett 'nej'.",
+	"Det kommer att kännas värt det när du väl landar på rätt plats.",
+	"Fira varje litet framsteg. Även att bara orka öppna datorn idag. Du är grym.",
 ];
 
 export default function Home() {
@@ -38,102 +52,61 @@ export default function Home() {
 	};
 
 	return (
-		<>
-			<div className='min-h-screen bg-linear-to-br from-cyan-200 via-purple-200 to-rose-200 p-8'>
-				<div className='max-w-none mx-8 bg-white rounded-3xl overflow-hidden'>
-					<nav className='bg-white border-b border-gray-100'>
-						<div className='px-8 py-4 flex justify-between items-center'>
-							<h1 className='text-2xl font-bold text-purple-600'>Peppzonen</h1>
-							<div className='flex space-x-6'>
-								<Link
-									href='/support'
-									className='text-purple-600 hover:text-purple-800 transition-colors'
-								>
-									Support
-								</Link>
-								<Link
-									href='/actions'
-									className='text-purple-600 hover:text-purple-800 transition-colors'
-								>
-									Actions
-								</Link>
-								<Link
-									href='/personality-test'
-									className='text-purple-600 hover:text-purple-800 transition-colors'
-								>
-									Fun Test
-								</Link>
-							</div>
-						</div>
-					</nav>
-
-					<div className='bg-linear-to-br from-yellow-50 to-pink-50'>
-						<main className='p-1 md:p-12'>
-							<motion.div
-								className='text-center w-full max-w-4xl mx-auto flex flex-col justify-center space-y-6 sm:space-y-8 min-h-[500px] sm:min-h-[600px]'
-								initial={{ opacity: 0 }}
-								animate={{ opacity: 1 }}
-								transition={{ duration: 0.6 }}
-							>
-								{/* Quote Container */}
+		<AppLayout>
+			<PageContainer>
+				{/* Quote Container */}
+				<motion.div
+					className='bg-white/80 backdrop-blur-sm rounded-2xl sm:rounded-[3rem] shadow-xl pt-8 sm:pt-12 px-6 sm:px-16 pb-12 sm:pb-16 min-h-[300px] sm:min-h-[400px] flex items-center justify-center'
+					initial={{ scale: 0.9, opacity: 0 }}
+					animate={{ scale: 1, opacity: 1 }}
+					transition={{ duration: 0.5, delay: 0.2 }}
+				>
+					<motion.div className='w-full flex items-center justify-center'>
+						<AnimatePresence mode='wait'>
+							{isLoading ? (
 								<motion.div
-									className='bg-white/80 backdrop-blur-sm rounded-2xl sm:rounded-[3rem] shadow-xl pt-8 sm:pt-12 px-6 sm:px-16 pb-12 sm:pb-16 min-h-[300px] sm:min-h-[400px] flex items-center justify-center'
-									initial={{ scale: 0.9, opacity: 0 }}
-									animate={{ scale: 1, opacity: 1 }}
-									transition={{ duration: 0.5, delay: 0.2 }}
+									className='text-lg sm:text-2xl text-gray-500 text-center'
+									initial={{ opacity: 0 }}
+									animate={{ opacity: 1 }}
+									exit={{ opacity: 0 }}
+									transition={{ duration: 0.3 }}
 								>
-									<motion.div className='w-full flex items-center justify-center'>
-										<AnimatePresence mode='wait'>
-											{isLoading ? (
-												<motion.div
-													className='text-lg sm:text-2xl text-gray-500 text-center'
-													initial={{ opacity: 0 }}
-													animate={{ opacity: 1 }}
-													exit={{ opacity: 0 }}
-													transition={{ duration: 0.3 }}
-												>
-													Loading your dose of positivity... ✨
-												</motion.div>
-											) : (
-												<motion.blockquote
-													className='text-2xl sm:text-4xl lg:text-5xl text-gray-700 font-medium leading-relaxed text-center'
-													initial={{ opacity: 0, y: 20 }}
-													animate={{ opacity: 1, y: 0 }}
-													exit={{ opacity: 0, y: -20 }}
-													transition={{ duration: 0.4, ease: "easeOut" }}
-													key={currentQuote}
-												>
-													{currentQuote}
-												</motion.blockquote>
-											)}
-										</AnimatePresence>
-									</motion.div>
+									Loading your dose of positivity... ✨
 								</motion.div>
-
-								{/* Button Container */}
-								<motion.div
-									className='text-center'
+							) : (
+								<motion.blockquote
+									className='text-2xl sm:text-4xl lg:text-5xl text-gray-700 font-medium leading-relaxed text-center'
 									initial={{ opacity: 0, y: 20 }}
 									animate={{ opacity: 1, y: 0 }}
-									transition={{ duration: 0.5, delay: 0.4 }}
+									exit={{ opacity: 0, y: -20 }}
+									transition={{ duration: 0.4, ease: "easeOut" }}
+									key={currentQuote}
 								>
-									<motion.button
-										onClick={getNewQuote}
-										disabled={isLoading}
-										className='bg-linear-to-r from-purple-500 via-pink-500 to-orange-400 text-white px-8 sm:px-12 py-4 sm:py-6 rounded-full text-lg sm:text-2xl font-semibold hover:from-purple-600 hover:via-pink-600 hover:to-orange-500 transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg'
-										whileHover={{ scale: 1.05 }}
-										whileTap={{ scale: 0.98 }}
-									>
-										{isLoading
-											? "Getting new quote..."
-											: "Need another boost? ✨"}
-									</motion.button>
-								</motion.div>
-							</motion.div>
-						</main>
-					</div>
-				</div>
-			</div>
-		</>
+									{currentQuote}
+								</motion.blockquote>
+							)}
+						</AnimatePresence>
+					</motion.div>
+				</motion.div>
+
+				{/* Button Container */}
+				<motion.div
+					className='text-center'
+					initial={{ opacity: 0, y: 20 }}
+					animate={{ opacity: 1, y: 0 }}
+					transition={{ duration: 0.5, delay: 0.4 }}
+				>
+					<motion.button
+						onClick={getNewQuote}
+						disabled={isLoading}
+						className='bg-linear-to-r from-purple-500 via-pink-500 to-orange-400 text-white px-8 sm:px-12 py-4 sm:py-6 rounded-full text-lg sm:text-2xl font-semibold hover:from-purple-600 hover:via-pink-600 hover:to-orange-500 transition-all duration-300 cursor-pointer transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg'
+						whileHover={{ scale: 1.05 }}
+						whileTap={{ scale: 0.98 }}
+					>
+						{isLoading ? "Laddar ny pepp..." : "Dags för mer motivation? ✨"}
+					</motion.button>
+				</motion.div>
+			</PageContainer>
+		</AppLayout>
 	);
 }

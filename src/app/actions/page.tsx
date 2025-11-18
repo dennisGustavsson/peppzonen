@@ -1,6 +1,7 @@
 "use client";
-import Link from "next/link";
 import { useState } from "react";
+import AppLayout from "@/components/AppLayout";
+import PageContainer from "@/components/PageContainer";
 
 const moodBoosters = [
 	{
@@ -112,36 +113,8 @@ export default function Actions() {
 	const [currentQuickWin, setCurrentQuickWin] = useState(getRandomQuickWin());
 
 	return (
-		<div className='min-h-screen bg-linear-to-br from-green-50 to-blue-50'>
-			<nav className='bg-white shadow-lg'>
-				<div className='max-w-6xl mx-auto px-4 py-3 flex justify-between items-center'>
-					<Link href='/' className='text-2xl font-bold text-purple-600'>
-						😊 CheerMeUp
-					</Link>
-					<div className='flex space-x-6'>
-						<Link
-							href='/'
-							className='text-purple-600 hover:text-purple-800 transition-colors'
-						>
-							Home
-						</Link>
-						<Link
-							href='/support'
-							className='text-purple-600 hover:text-purple-800 transition-colors'
-						>
-							Support
-						</Link>
-						<Link
-							href='/personality-test'
-							className='text-purple-600 hover:text-purple-800 transition-colors'
-						>
-							Fun Test
-						</Link>
-					</div>
-				</div>
-			</nav>
-
-			<main className='max-w-6xl mx-auto px-4 py-12'>
+		<AppLayout>
+			<PageContainer>
 				<div className='text-center mb-12'>
 					<h1 className='text-4xl font-bold text-green-800 mb-4'>
 						Take Action, Feel Better! 🎯
@@ -154,12 +127,12 @@ export default function Actions() {
 				</div>
 
 				{/* Quick Win Section */}
-				<div className='bg-white rounded-2xl shadow-xl p-8 max-w-4xl mx-auto mb-12'>
+				<div className='bg-white/80 backdrop-blur-sm rounded-2xl sm:rounded-[3rem] shadow-xl p-8 max-w-4xl mx-auto mb-12'>
 					<h2 className='text-2xl font-bold text-center text-green-700 mb-6'>
 						5-Minute Mood Booster 🚀
 					</h2>
 					<div className='text-center'>
-						<div className='bg-green-50 rounded-lg p-6 mb-6'>
+						<div className='bg-green-50/80 backdrop-blur-sm rounded-lg p-6 mb-6'>
 							<p className='text-lg text-green-800 font-medium mb-4'>
 								Right now, try this simple action:
 							</p>
@@ -169,7 +142,7 @@ export default function Actions() {
 							<div className='flex justify-center space-x-4'>
 								<button
 									onClick={() => toggleAction(currentQuickWin)}
-									className={`px-6 py-3 rounded-lg font-semibold transition-all ${
+									className={`px-6 py-3 rounded-full font-semibold transition-all ${
 										completedActions.has(currentQuickWin)
 											? "bg-green-500 text-white"
 											: "bg-green-100 text-green-700 hover:bg-green-200"
@@ -181,7 +154,7 @@ export default function Actions() {
 								</button>
 								<button
 									onClick={() => setCurrentQuickWin(getRandomQuickWin())}
-									className='px-6 py-3 bg-blue-100 text-blue-700 rounded-lg font-semibold hover:bg-blue-200 transition-colors'
+									className='px-6 py-3 bg-blue-100 text-blue-700 rounded-full font-semibold hover:bg-blue-200 transition-colors'
 								>
 									Get New Action
 								</button>
@@ -202,9 +175,9 @@ export default function Actions() {
 								onClick={() =>
 									setSelectedCategory(selectedCategory === index ? null : index)
 								}
-								className={`bg-white rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition-all transform hover:scale-105 ${
+								className={`bg-white/80 backdrop-blur-sm rounded-2xl sm:rounded-[3rem] shadow-lg p-6 text-center hover:shadow-xl transition-all transform hover:scale-105 ${
 									selectedCategory === index
-										? "ring-4 ring-green-300 bg-green-50"
+										? "ring-4 ring-green-300 bg-green-50/80"
 										: ""
 								}`}
 							>
@@ -221,7 +194,7 @@ export default function Actions() {
 
 					{/* Selected Category Actions */}
 					{selectedCategory !== null && (
-						<div className='bg-white rounded-xl shadow-lg p-8'>
+						<div className='bg-white/80 backdrop-blur-sm rounded-2xl sm:rounded-[3rem] shadow-lg p-8'>
 							<h3 className='text-2xl font-bold text-green-700 mb-6 text-center'>
 								{moodBoosters[selectedCategory].emoji}{" "}
 								{moodBoosters[selectedCategory].category}
@@ -231,10 +204,10 @@ export default function Actions() {
 									(action, actionIndex) => (
 										<div
 											key={actionIndex}
-											className={`p-4 rounded-lg border-2 cursor-pointer transition-all ${
+											className={`p-4 rounded-2xl border-2 cursor-pointer transition-all ${
 												completedActions.has(action)
-													? "border-green-300 bg-green-50 text-green-800"
-													: "border-gray-200 hover:border-green-300 hover:bg-green-50"
+													? "border-green-300 bg-green-50/80 text-green-800"
+													: "border-gray-200 hover:border-green-300 hover:bg-green-50/80"
 											}`}
 											onClick={() => toggleAction(action)}
 										>
@@ -254,7 +227,7 @@ export default function Actions() {
 
 				{/* Progress Section */}
 				{completedActions.size > 0 && (
-					<div className='bg-green-50 border-l-4 border-green-400 p-6 rounded-lg'>
+					<div className='bg-green-50/80 backdrop-blur-sm border-l-4 border-green-400 p-6 rounded-2xl sm:rounded-[3rem]'>
 						<div className='flex'>
 							<div className='shrink-0'>
 								<span className='text-2xl'>🎉</span>
@@ -274,7 +247,7 @@ export default function Actions() {
 				)}
 
 				{/* Tips Section */}
-				<div className='bg-white rounded-xl shadow-lg p-8 mt-8'>
+				<div className='bg-white/80 backdrop-blur-sm rounded-2xl sm:rounded-[3rem] shadow-lg p-8 mt-8'>
 					<h2 className='text-2xl font-bold text-green-700 mb-6 text-center'>
 						Pro Tips for Success 💡
 					</h2>
@@ -317,13 +290,7 @@ export default function Actions() {
 						</div>
 					</div>
 				</div>
-			</main>
-
-			<footer className='bg-green-700 text-white text-center py-8 mt-16'>
-				<p className='text-lg font-medium'>
-					Every positive action is a step toward a brighter tomorrow! 🌟
-				</p>
-			</footer>
-		</div>
+			</PageContainer>
+		</AppLayout>
 	);
 }
