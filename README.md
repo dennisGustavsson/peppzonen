@@ -1,132 +1,150 @@
-# CheerMeUp - Uplifting Support for Job Seekers 😊
+# Peppzonen - Stöd för Jobbsökare
 
-A cheerful and supportive website designed to help job seekers boost their mood after rejections and maintain a positive outlook during their job search journey.
+En upplyftande och stödjande webbplats på svenska designad för att hjälpa jobbsökare att hålla humöret uppe efter avslag och behålla en positiv inställning under jobbsökningen.
 
 ## Features
 
-### 🏠 Home Page (/)
+### 🏠 Startsida (/)
 
-- Random uplifting quotes specifically for job seekers
-- Cheerful, colorful design with gradient backgrounds
-- Interactive quote generator
-- Easy navigation to support resources
+- Slumpmässiga upplyftande citat specifikt för jobbsökare (på svenska)
+- Färgglad design med gradientbakgrunder och anpassad färgpalett
+- Interaktiv citatgenerator med animationer
+- Enkel navigation via flytande navbar
 
-### 🤗 Support Page (/support)
+### 💚 Stödsida (/support)
 
-- Positive affirmation cards with navigation
-- Mental health resources and crisis support links
-- Daily tips for morning and evening routines
-- Professional and crisis support contact information
+- Svenska resurser för mental hälsa och kris-stöd
+- Kontaktinformation för vårdcentral, psykolog och jourhavande medmänniska
+- Strukturerade tips för att bryta negativa spiraler
+- Akut hjälp-sektion med 112 och 1177
+- Lucide-ikoner för professionell visuell framtoning
 
-### 🎯 Actions Page (/actions)
+### 🎯 Aktivitetssida (/actions)
 
-- Interactive mood-boosting activities organized by category:
-  - Physical Activity
-  - Creative Expression
-  - Social Connection
-  - Mindfulness & Relaxation
-  - Learning & Growth
-  - Self-Care
-- 5-minute quick win suggestions
-- Progress tracking for completed actions
-- Motivational tips for building positive habits
+- Interaktiva humörhöjande aktiviteter organiserade efter kategori:
+  - Fysisk aktivitet
+  - Kreativt uttryck
+  - Social kontakt
+  - Mindfulness & avslappning
+  - Lärande & utveckling
+  - Egenvård
+- 5-minuters peppboost med slumpmässiga förslag
+- Spårning av genomförda aktiviteter
+- Animerade övergångar med Framer Motion
+- Lucide-ikoner för varje kategori
 
-### 🎭 Personality Test Page (/personality-test)
+### 🎭 Personlighetstest (/personality-test)
 
-- Fun, light-hearted job seeker personality quiz
-- 6 humorous questions about job search habits
-- 4 personality types with encouraging advice:
-  - The Perfect Planner 📋
-  - The Rapid Responder 🚀
-  - The Tomorrow Starter 📅
-  - The Analysis Expert 🤔
+- Satiriskt och absurt PAKE-koncept personlighetstest på svenska
+- 6 humoristiska frågor om jobbsökarbeteenden
+- 4 absurda personlighetstyper:
+  - Den Kvant-Dynamiska Trapesoiden
+  - Den Strategiska Ugglan
+  - Den Holistiska Våfflan
+  - Den Proaktiva Kometen
+- "Skitsnack-analys" som kritiserar testens pseudovetenskap
+- Uppmuntrande råd trots det satiriska tonläget
 
-## Technologies Used
+## Teknologier
 
-- **Next.js 16.0.1+** with App Router
-- **TypeScript** for type safety
-- **Tailwind CSS** for responsive styling and layout
-- **SCSS/Sass** for custom styling
-- **React Hooks** for state management
+- **Next.js 16.0.1** med App Router och Turbopack
+- **TypeScript** för typsäkerhet
+- **Tailwind CSS 4** för responsiv styling med anpassad färgpalett
+- **SCSS/Sass** för custom styling och CSS-variabler
+- **Framer Motion** för animationer och övergångar
+- **Lucide React** för vektorikoner (ersätter emojis)
+- **React Hooks** för state management
 
-## Getting Started
+## Kom igång
 
-### Prerequisites
+### Förutsättningar
 
 - Node.js 18+
-- npm or yarn
+- npm eller yarn
 
 ### Installation
 
-1. Clone the repository:
+1. Klona repositoryt:
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/dennisGustavsson/peppzonen.git
 cd website
 ```
 
-2. Install dependencies:
+2. Installera beroenden:
 
 ```bash
 npm install
 ```
 
-3. Run the development server:
+3. Starta utvecklingsservern:
 
 ```bash
 npm run dev
 ```
 
-4. Open [http://localhost:3000](http://localhost:3000) in your browser.
+4. Öppna [http://localhost:3000](http://localhost:3000) i din webbläsare.
 
-### Available Scripts
+### Tillgängliga kommandon
 
-- `npm run dev` - Start the development server
-- `npm run build` - Build the application for production
-- `npm run start` - Start the production server
-- `npm run lint` - Run ESLint to check for code issues
+- `npm run dev` - Starta utvecklingsservern
+- `npm run build` - Bygg applikationen för produktion
+- `npm run start` - Starta produktionsservern
+- `npm run lint` - Kör ESLint för att kontrollera koden
 
-## Project Structure
+## Projektstruktur
 
 ```
 src/
 ├── app/
-│   ├── actions/          # Actions page with mood-boosting activities
-│   ├── personality-test/ # Fun personality quiz for job seekers
-│   ├── support/          # Support resources and affirmations
-│   ├── globals.css       # Global styles and animations
-│   ├── layout.tsx        # Root layout component
-│   └── page.tsx          # Home page with uplifting quotes
+│   ├── actions/          # Aktivitetssida med humörhöjande övningar
+│   ├── personality-test/ # Satiriskt PAKE-personlighetstest
+│   ├── support/          # Stödresurser och kontaktinformation
+│   ├── globals.css       # Globala stilar, CSS-variabler för färgpalett
+│   ├── layout.tsx        # Root layout-komponent
+│   └── page.tsx          # Startsida med motiverande citat
+├── components/
+│   ├── AppLayout.tsx     # Layout-wrapper med bakgrund
+│   ├── Navbar.tsx        # Flytande pill-formad navbar
+│   └── PageContainer.tsx # Container med fade-in animation
 └── ...
 ```
 
-## Design Philosophy
+## Designfilosofi
 
-This website follows a **"cheer-first"** design approach:
+Webbplatsen följer en **"pepp-först"** designstrategi:
 
-- **Bright, warm colors** (yellows, pinks, purples, greens)
-- **Encouraging language** throughout all content
-- **Positive reframing** of job search challenges
-- **Actionable advice** over abstract concepts
-- **Humor and levity** to lighten the mood
-- **Mobile-responsive** design for accessibility
+- **Anpassad färgpalett** med varma toner:
+  - Baltic Blue (#4A7C8C)
+  - Frosted Mint (#7FB5A5)
+  - Tan (#D3B588) - ersatte Tangerine Dream
+  - Wine Plum (#8B5A7D)
+  - Pitch Black för kontrast
+- **CSS-variabler** för konsekvent färganvändning
+- **Uppmuntrande språk** genom allt innehåll (på svenska)
+- **Positivt omformulering** av jobbsökarutmaningar
+- **Konkreta råd** över abstrakta koncept
+- **Humor och lätthet** med satiriska inslag (t.ex. personlighetstestet)
+- **Mobile-responsive** design med Tailwind
+- **Lucide-ikoner** för professionell och skalbar visuell framtoning
+- **Framer Motion-animationer** för användarvänlighet
 
-## Contributing
+## Bidra
 
-We welcome contributions that align with our mission of supporting job seekers! Please ensure all content maintains a positive, supportive tone.
+Vi välkomnar bidrag som överensstämmer med vårt uppdrag att stödja jobbsökare! Se till att allt innehåll behåller en positiv, stödjande ton på svenska.
 
-## Support Resources Disclaimer
+## Ansvarsfriskrivning för stödresurser
 
-This website provides general support and encouragement. For serious mental health concerns, please contact:
+Denna webbplats ger allmänt stöd och uppmuntran. För allvarliga problem med mental hälsa, vänligen kontakta:
 
-- National Suicide Prevention Lifeline: 988
-- Crisis Text Line: Text HOME to 741741
-- Or your local emergency services
+- **112** vid livsfara eller akut psykisk kris
+- **1177** för rådgivning om vård och närmsta psykiatriska akutmottagning
+- Din vårdcentral eller psykolog för professionell hjälp
 
-## License
+## Licens
 
-This project is created to help job seekers maintain positivity during their search. Feel free to use and adapt for similar supportive purposes.
+Detta projekt är skapat för att hjälpa jobbsökare att behålla positivitet under sin sökning. Använd och anpassa gärna för liknande stödjande syften.
 
 ---
 
-**Remember: Every setback is a setup for a comeback! 💪**
+**Kom ihåg: Varje motgång är en uppställning för en comeback! 💪**
