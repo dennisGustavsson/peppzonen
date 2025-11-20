@@ -2,6 +2,16 @@
 import { useState } from "react";
 import AppLayout from "@/components/AppLayout";
 import PageContainer from "@/components/PageContainer";
+import {
+	Sparkles,
+	RefreshCw,
+	Eye,
+	Grid,
+	Rocket,
+	Brain,
+	Smile,
+	MessageCircle,
+} from "lucide-react";
 
 interface Question {
 	id: number;
@@ -154,7 +164,7 @@ const questions: Question[] = [
 // ---- RESULTAT: Satiriska PAKE-profiler ----
 const results = {
 	Trapesoid: {
-		title: "Den Kvant-Dynamiska Trapesoiden 🌀",
+		title: "Den Kvant-Dynamiska Trapesoiden",
 		description:
 			"Du är en paradox som frodas i skärningspunkten mellan kaos och struktur.",
 		traits: [
@@ -169,7 +179,7 @@ const results = {
 			"Ditt andedjur på arbetsplatsen: Schrödingers chef. Du är anställningsbar. Kanske.",
 	},
 	Uggla: {
-		title: "Den Strategiska Ugglan 🦉",
+		title: "Den Strategiska Ugglan",
 		description:
 			"Du är en analytisk arkebuserare som värderar data över den mänskliga faktorn.",
 		traits: [
@@ -184,7 +194,7 @@ const results = {
 			"Du är starkast när du litar på att du vet mer än du tror. Du är en 100% felfri visionär, även om ingen förstår det.",
 	},
 	Vaffla: {
-		title: "Den Holistiska Våfflan 🧇",
+		title: "Den Holistiska Våfflan",
 		description:
 			"Du är en inkluderande kraft som ser harmonin i alla processer. Konflikter är ditt kryptonit.",
 		traits: [
@@ -194,12 +204,12 @@ const results = {
 			"Du är 100% inriktad på att alla i rummet ska må bra, även på bekostnad av ett resultat.",
 		],
 		advice:
-			"Slutsats: Du är utmärkt på att undvika friktion! Men ibland är det enda som leder till framsteg lite sund konflikt. Sluta oroa dig för allas känslor, och fokusera på din egen framgång. Det är okej att skapa friktion. 🗣️",
+			"Slutsats: Du är utmärkt på att undvika friktion! Men ibland är det enda som leder till framsteg lite sund konflikt. Sluta oroa dig för allas känslor, och fokusera på din egen framgång. Det är okej att skapa friktion.",
 		encouragement:
 			"Fortsätt vara lagets lim! Men kom ihåg att det limmet är starkast när du får vara stark själv först.",
 	},
 	Komet: {
-		title: "Den Proaktiva Kometen ☄️",
+		title: "Den Proaktiva Kometen",
 		description:
 			"Du är en ostoppbar, proaktiv kraft som lever i morgondagen och ignorerar detaljer.",
 		traits: [
@@ -251,18 +261,27 @@ export default function PersonalityTest() {
 
 	if (showResult) {
 		const result = getResult();
+		const resultIcons: { [key: string]: React.ElementType } = {
+			Trapesoid: RefreshCw,
+			Uggla: Eye,
+			Vaffla: Grid,
+			Komet: Rocket,
+		};
+		const ResultIcon = resultIcons[result.title.split(" ")[2]] || Sparkles;
 		return (
 			<AppLayout>
 				<PageContainer>
 					<div className='text-center mb-8'>
-						<h1 className='text-4xl font-bold text-pink-800 mb-4'>
-							Ditt Absurda Resultat! 🎭
+						<h1 className='text-4xl font-bold text-pink-800 mb-4 flex items-center justify-center gap-3'>
+							<Sparkles className='w-8 h-8' />
+							Ditt Absurda Resultat!
 						</h1>
 					</div>
 
 					<div className='bg-white/80 backdrop-blur-sm rounded-2xl sm:rounded-[3rem] shadow-xl p-8 max-w-3xl mx-auto'>
 						<div className='text-center mb-6'>
-							<h2 className='text-3xl font-bold text-pink-700 mb-2'>
+							<h2 className='text-3xl font-bold text-pink-700 mb-2 flex items-center justify-center gap-3'>
+								<ResultIcon className='w-8 h-8' />
 								{result.title}
 							</h2>
 							<p className='text-lg text-gray-600 italic'>
@@ -276,20 +295,32 @@ export default function PersonalityTest() {
 							</h3>
 							<ul className='space-y-3'>
 								{result.traits.map((trait, index) => (
-									<li key={index} className='flex items-start'>
-										<span className='text-pink-500 mr-2'>•</span>
+									<li key={index} className='flex items-center'>
+										<Sparkles className='w-4 h-4 mr-2 text-pink-500' />
 										<span className='text-gray-700'>{trait}</span>
 									</li>
 								))}
 							</ul>
 						</div>
 
-						{/* SKITSNACK ANALYS */}
-						<div className='bg-red-50/80 backdrop-blur-sm border-l-4 border-red-400 p-6 rounded-2xl sm:rounded-[3rem] mb-6'>
-							<h3 className='text-lg font-bold text-red-700 mb-2'>
-								Varför detta är Skitsnack (Din Analys):
+						<div
+							className='border-l-4 p-6 rounded-2xl sm:rounded-[3rem] mb-6'
+							style={{
+								background: "var(--wine-plum-50)",
+								borderColor: "var(--wine-plum-400)",
+							}}
+						>
+							<h3
+								className='text-lg font-bold mb-2 flex items-center gap-2'
+								style={{ color: "var(--wine-plum-700)" }}
+							>
+								<Brain className='w-5 h-5' /> Varför detta är Skitsnack (Din
+								Analys):
 							</h3>
-							<ul className='text-red-700 space-y-2 text-sm'>
+							<ul
+								className='space-y-2 text-sm'
+								style={{ color: "var(--wine-plum-600)" }}
+							>
 								<li>
 									<strong>Total irrelevans:</strong> Frågorna om Rubiks kuber
 									och gem skapar scenarier så långt från verkligheten att de
@@ -308,16 +339,28 @@ export default function PersonalityTest() {
 							</ul>
 						</div>
 
-						<div className='bg-pink-50/80 backdrop-blur-sm rounded-2xl p-6 mb-6'>
-							<h3 className='text-lg font-bold text-pink-700 mb-2'>
-								Vår Analytiska Slutsats:
+						<div
+							className='rounded-2xl p-6 mb-6'
+							style={{ background: "var(--tangerine-dream-50)" }}
+						>
+							<h3
+								className='text-lg font-bold mb-2 flex items-center gap-2'
+								style={{ color: "var(--tangerine-dream-700)" }}
+							>
+								<MessageCircle className='w-5 h-5' /> Vår Analytiska Slutsats:
 							</h3>
 							<p className='text-gray-700'>{result.advice}</p>
 						</div>
 
-						<div className='bg-yellow-50/80 backdrop-blur-sm rounded-2xl p-6 mb-8'>
-							<h3 className='text-lg font-bold text-yellow-700 mb-2'>
-								Pepp-Boost:
+						<div
+							className='rounded-2xl p-6 mb-8'
+							style={{ background: "var(--wine-plum-50)" }}
+						>
+							<h3
+								className='text-lg font-bold mb-2 flex items-center gap-2'
+								style={{ color: "var(--wine-plum-600)" }}
+							>
+								<Sparkles className='w-5 h-5' /> Pepp-Boost:
 							</h3>
 							<p className='text-gray-700'>{result.encouragement}</p>
 						</div>
@@ -325,9 +368,9 @@ export default function PersonalityTest() {
 						<div className='text-center'>
 							<button
 								onClick={resetTest}
-								className='bg-linear-to-r from-pink-500 to-purple-500 text-white font-bold py-3 px-8 rounded-full hover:from-pink-600 hover:to-purple-600 transform hover:scale-105 transition-all duration-200 shadow-lg mr-4'
+								className='bg-linear-to-r from-pink-500 to-purple-500 text-white font-bold py-3 px-8 rounded-full hover:from-pink-600 hover:to-purple-600 transform hover:scale-105 transition-all duration-200 shadow-lg mr-4 flex items-center justify-center gap-2'
 							>
-								Ta om Testet 🔄
+								<RefreshCw className='w-5 h-5' /> Ta om Testet
 							</button>
 						</div>
 					</div>
@@ -340,13 +383,17 @@ export default function PersonalityTest() {
 		<AppLayout>
 			<PageContainer>
 				<div className='text-center mb-8'>
-					<h1 className='text-4xl font-bold text-pink-800 mb-4'>
-						Synerg-Align™ Personlighetssyntes 🤔
+					<h1
+						className='text-4xl font-bold mb-4 flex items-center justify-center gap-3'
+						style={{ color: "var(--wine-plum-700)" }}
+					>
+						<Brain className='w-8 h-8' /> Synerg-Align™ Personlighetssyntes
 					</h1>
-					<p className='text-xl text-gray-700 max-w-3xl mx-auto'>
+					<p className='text-xl text-gray-700 max-w-3xl mx-auto flex items-center justify-center gap-2'>
 						Välkommen till Absurditets-galleriet! Svara ärligt på dessa omöjliga
 						frågor för att upptäcka din sanna Corporate-Arketyp. Kom ihåg:
-						svaret säger mer om testet än om dig! 🌟
+						svaret säger mer om testet än om dig!{" "}
+						<Sparkles className='w-5 h-5 text-pink-500' />
 					</p>
 				</div>
 
@@ -390,9 +437,9 @@ export default function PersonalityTest() {
 					</div>
 
 					<div className='text-center'>
-						<p className='text-gray-500 text-sm'>
+						<p className='text-gray-500 text-sm flex items-center justify-center gap-2'>
 							Välj det påstående som är mest absurt. Det finns inga rätt svar,
-							bara meningslösa. 😄
+							bara meningslösa. <Smile className='w-4 h-4 text-pink-500' />
 						</p>
 					</div>
 				</div>

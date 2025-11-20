@@ -12,15 +12,13 @@ export default function PageContainer({
 	className = "",
 }: PageContainerProps) {
 	return (
-		<main className='p-1 md:p-12'>
-			<motion.div
-				className={`text-center w-full h-auto max-w-4xl mx-auto flex flex-col justify-center space-y-6 sm:space-y-8 min-h-[500px] sm:min-h-[600px] ${className}`}
-				initial={{ opacity: 0 }}
-				animate={{ opacity: 1 }}
-				transition={{ duration: 0.6 }}
-			>
-				{children}
-			</motion.div>
-		</main>
+		<motion.div
+			className={`p-1 md:p-12 w-full max-w-4xl mx-auto flex-1 flex flex-col  ${className}`}
+			initial={{ opacity: 0 }}
+			animate={{ opacity: 1 }}
+			transition={{ duration: 0.6 }}
+		>
+			{children}
+		</motion.div>
 	);
 }

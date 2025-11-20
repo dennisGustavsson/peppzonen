@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import AppLayout from "@/components/AppLayout";
 import PageContainer from "@/components/PageContainer";
+import { Heart, RefreshCw } from "lucide-react";
 
 const upliftingQuotes = [
 	"Ett 'nej' är bara data. Det säger ingenting om ditt värde eller ditt nästa 'ja'.",
@@ -33,6 +34,17 @@ const upliftingQuotes = [
 export default function Home() {
 	const [currentQuote, setCurrentQuote] = useState("");
 	const [isLoading, setIsLoading] = useState(true);
+	const [isButtonHovered, setIsButtonHovered] = useState(false);
+
+	// Button styling based on hover state
+	const buttonStyle = {
+		background: isButtonHovered
+			? `linear-gradient(45deg, var(--baltic-blue-700), var(--frosted-mint-300))`
+			: `linear-gradient(45deg, var(--baltic-blue-500), var(--frosted-mint-500))`,
+		backgroundSize: isButtonHovered ? "200% 200%" : "300% 300%",
+		backgroundPosition: isButtonHovered ? "100% 0%" : "0% 0%",
+		transition: "all 0.6s ease",
+	};
 
 	useEffect(() => {
 		const randomQuote =
@@ -55,8 +67,9 @@ export default function Home() {
 		<AppLayout>
 			<PageContainer>
 				{/* Quote Container */}
+
 				<motion.div
-					className='bg-white/80 backdrop-blur-sm rounded-2xl sm:rounded-[3rem] shadow-xl pt-8 sm:pt-12 px-6 sm:px-16 pb-12 sm:pb-16 min-h-[300px] sm:min-h-[400px] flex items-center justify-center'
+					className='bg-white/20 backdrop-blur-md rounded-2xl sm:rounded-[3rem] shadow-xl/5 pt-8 sm:mt-3 mt-8 sm:pt-12 px-8 sm:px-16 pb-12 sm:pb-16 flex-1 flex items-center justify-center'
 					initial={{ scale: 0.9, opacity: 0 }}
 					animate={{ scale: 1, opacity: 1 }}
 					transition={{ duration: 0.5, delay: 0.2 }}
@@ -99,13 +112,40 @@ export default function Home() {
 					<motion.button
 						onClick={getNewQuote}
 						disabled={isLoading}
-						className='bg-linear-to-r from-purple-500 via-pink-500 to-orange-400 text-white px-8 sm:px-12 py-4 sm:py-6 rounded-full text-lg sm:text-2xl font-semibold hover:from-purple-600 hover:via-pink-600 hover:to-orange-500 transition-all duration-300 cursor-pointer transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg'
-						whileHover={{ scale: 1.05 }}
+						className='text-white my-8 px-8 sm:px-12 py-4 sm:py-6 rounded-full text-lg sm:text-2xl font-semibold cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed shadow-lg relative overflow-hidden'
+						style={buttonStyle}
+						onMouseEnter={() => {
+							if (!isLoading) {
+								setIsButtonHovered(true);
+							}
+						}}
+						onMouseLeave={() => {
+							if (!isLoading) {
+								setIsButtonHovered(false);
+							}
+						}}
+						whileHover={{
+							scale: 1.02,
+							transition: { duration: 0.2, ease: "easeOut" },
+						}}
 						whileTap={{ scale: 0.98 }}
 					>
-						{isLoading ? "Laddar ny pepp..." : "Dags för mer motivation? ✨"}
+						{isLoading ? (
+							"Laddar ny pepp..."
+						) : (
+							<>
+								<RefreshCw className='w-5 h-5 inline mr-3' />
+								Dags för mer motivation?
+							</>
+						)}
 					</motion.button>
 				</motion.div>
+				<div
+					className='text-xs mt-4 text-center'
+					style={{ color: "var(--tangerine-dream-600)" }}
+				>
+					Ta några djupa andetag. Vila om du behöver. Sen kämpar du vidare.
+				</div>
 			</PageContainer>
 		</AppLayout>
 	);

@@ -1,94 +1,108 @@
 "use client";
 import { useState } from "react";
+import { motion, AnimatePresence } from "motion/react";
 import AppLayout from "@/components/AppLayout";
 import PageContainer from "@/components/PageContainer";
+import {
+	Sparkles,
+	RefreshCw,
+	Activity,
+	Palette,
+	Users,
+	Brain,
+	BookOpen,
+	Heart,
+	Check,
+	Circle,
+	Zap,
+} from "lucide-react";
 
 const moodBoosters = [
 	{
-		category: "Physical Activity",
-		emoji: "🏃‍♂️",
+		category: "Fysisk aktivitet",
+		icon: Activity,
 		actions: [
-			"Take a 10-minute walk outside",
-			"Do 5 minutes of stretching",
-			"Dance to your favorite song",
-			"Try some jumping jacks",
-			"Go for a bike ride",
-			"Practice yoga poses",
+			"Ta en 10-minuters promenad utomhus",
+			"Stretcha i 5 minuter",
+			"Dansa till din favoritlåt",
+			"Prova några hopp",
+			"Ta en cykeltur",
+			"Öva yogapositioner",
 		],
 	},
 	{
-		category: "Creative Expression",
-		emoji: "🎨",
+		category: "Kreativt uttryck",
+		icon: Palette,
 		actions: [
-			"Draw or doodle something fun",
-			"Write in a journal",
-			"Take photos of beautiful things",
-			"Cook or bake something new",
-			"Play a musical instrument",
-			"Try origami or crafts",
+			"Rita eller klottra något roligt",
+			"Skriv i en dagbok",
+			"Ta foton av vackra saker",
+			"Laga eller baka något nytt",
+			"Spela ett musikinstrument",
+			"Prova origami eller hantverk",
 		],
 	},
 	{
-		category: "Social Connection",
-		emoji: "👥",
+		category: "Social kontakt",
+		icon: Users,
 		actions: [
-			"Call a friend or family member",
-			"Send a thoughtful text message",
-			"Video chat with someone you miss",
-			"Write a thank you note",
-			"Join an online community",
-			"Volunteer for a cause you care about",
+			"Ring en vän eller familjemedlem",
+			"Skicka ett omtänksamt textmeddelande",
+			"Videochatta med någon du saknar",
+			"Skriv ett tackbrev",
+			"Gå med i en online-community",
+			"Volontärarbeta för något du bryr dig om",
 		],
 	},
 	{
-		category: "Mindfulness & Relaxation",
-		emoji: "🧘‍♀️",
+		category: "Mindfulness & avslappning",
+		icon: Brain,
 		actions: [
-			"Practice deep breathing for 5 minutes",
-			"Do a guided meditation",
-			"Take a warm bath or shower",
-			"Listen to calming music",
-			"Practice gratitude journaling",
-			"Try progressive muscle relaxation",
+			"Öva djupandning i 5 minuter",
+			"Gör en guidad meditation",
+			"Ta ett varmt bad eller dusch",
+			"Lyssna på lugnande musik",
+			"Öva tacksamhetsdagbok",
+			"Prova progressiv muskelavslappning",
 		],
 	},
 	{
-		category: "Learning & Growth",
-		emoji: "📚",
+		category: "Lärande & utveckling",
+		icon: BookOpen,
 		actions: [
-			"Read an inspiring article",
-			"Watch an educational video",
-			"Learn 5 words in a new language",
-			"Take a free online course",
-			"Listen to a motivating podcast",
-			"Read positive news stories",
+			"Läs en inspirerande artikel",
+			"Titta på en pedagogisk video",
+			"Lär dig 5 ord på ett nytt språk",
+			"Ta en gratis onlinekurs",
+			"Lyssna på en motiverande podcast",
+			"Läs positiva nyheter",
 		],
 	},
 	{
-		category: "Self-Care",
-		emoji: "💆‍♀️",
+		category: "Egenvård",
+		icon: Heart,
 		actions: [
-			"Give yourself a face mask",
-			"Organize a small space",
-			"Make your favorite healthy snack",
-			"Take a power nap (15-20 minutes)",
-			"Do something that makes you laugh",
-			"Practice positive self-talk",
+			"Ge dig själv en ansiktsmask",
+			"Organisera ett litet utrymme",
+			"Gör din favorithälsosamma snack",
+			"Ta en tupplur (15-20 minuter)",
+			"Gör något som får dig att skratta",
+			"Öva positiv självprat",
 		],
 	},
 ];
 
 const quickWins = [
-	"Make your bed",
-	"Drink a glass of water",
-	"Smile at yourself in the mirror",
-	"Take three deep breaths",
-	"Clean one small area",
-	"Text someone you appreciate",
-	"Step outside for fresh air",
-	"Listen to one uplifting song",
-	"Write down one thing you're grateful for",
-	"Do one minute of stretching",
+	"Bädda din säng",
+	"Drick ett glas vatten",
+	"Le mot dig själv i spegeln",
+	"Ta tre djupa andetag",
+	"Städa ett litet område",
+	"Sms:a någon du uppskattar",
+	"Gå ut för frisk luft",
+	"Lyssna på en upplyftande låt",
+	"Skriv ner en sak du är tacksam för",
+	"Stretcha i en minut",
 ];
 
 export default function Actions() {
@@ -115,181 +129,241 @@ export default function Actions() {
 	return (
 		<AppLayout>
 			<PageContainer>
-				<div className='text-center mb-12'>
-					<h1 className='text-4xl font-bold text-green-800 mb-4'>
-						Take Action, Feel Better! 🎯
-					</h1>
-					<p className='text-xl text-gray-700 max-w-3xl mx-auto'>
-						Sometimes the best way to feel better is to do something positive.
-						Here are some quick actions you can take right now to boost your
-						mood!
-					</p>
-				</div>
-
 				{/* Quick Win Section */}
-				<div className='bg-white/80 backdrop-blur-sm rounded-2xl sm:rounded-[3rem] shadow-xl p-8 max-w-4xl mx-auto mb-12'>
-					<h2 className='text-2xl font-bold text-center text-green-700 mb-6'>
-						5-Minute Mood Booster 🚀
-					</h2>
-					<div className='text-center'>
-						<div className='bg-green-50/80 backdrop-blur-sm rounded-lg p-6 mb-6'>
-							<p className='text-lg text-green-800 font-medium mb-4'>
-								Right now, try this simple action:
-							</p>
-							<p className='text-2xl text-green-700 font-bold mb-4'>
-								{currentQuickWin}
-							</p>
-							<div className='flex justify-center space-x-4'>
-								<button
-									onClick={() => toggleAction(currentQuickWin)}
-									className={`px-6 py-3 rounded-full font-semibold transition-all ${
-										completedActions.has(currentQuickWin)
-											? "bg-green-500 text-white"
-											: "bg-green-100 text-green-700 hover:bg-green-200"
-									}`}
-								>
-									{completedActions.has(currentQuickWin)
-										? "✅ Done!"
-										: "Mark as Done"}
-								</button>
-								<button
-									onClick={() => setCurrentQuickWin(getRandomQuickWin())}
-									className='px-6 py-3 bg-blue-100 text-blue-700 rounded-full font-semibold hover:bg-blue-200 transition-colors'
-								>
-									Get New Action
-								</button>
-							</div>
+				<motion.div
+					className='bg-white/90 backdrop-blur-md border rounded-2xl sm:rounded-[3rem] shadow-xl/10 pt-8 sm:mt-3 mt-8 sm:pt-12 px-6 sm:px-16 pb-12 sm:pb-16 flex-1 flex flex-col'
+					initial={{ scale: 0.9, opacity: 0 }}
+					animate={{ scale: 1, opacity: 1 }}
+					transition={{ duration: 0.5, delay: 0.2 }}
+				>
+					<div className='flex-1 flex flex-col justify-center'>
+						<div className='flex items-center justify-center gap-3 mb-6'>
+							<Zap
+								className='w-8 h-8'
+								style={{ color: "var(--pitch-black-700)" }}
+							/>
+							<h2
+								className='text-3xl sm:text-4xl font-bold text-center'
+								style={{ color: "var(--pitch-black-800)" }}
+							>
+								5-minuters peppboost
+							</h2>
 						</div>
+						<AnimatePresence mode='wait'>
+							<motion.div
+								key={currentQuickWin}
+								initial={{ opacity: 0, y: 20 }}
+								animate={{ opacity: 1, y: 0 }}
+								exit={{ opacity: 0, y: -20 }}
+								transition={{ duration: 0.4 }}
+								className='text-center'
+							>
+								<p
+									className='text-lg sm:text-xl mb-6'
+									style={{ color: "var(--pitch-black-700)" }}
+								>
+									Prova den här enkla aktiviteten just nu:
+								</p>
+								<p
+									className='text-2xl sm:text-3xl font-semibold mb-8'
+									style={{ color: "var(--pitch-black-800)" }}
+								>
+									{currentQuickWin}
+								</p>
+								<div className='flex justify-center items-center gap-4 flex-wrap'>
+									<motion.button
+										onClick={() => toggleAction(currentQuickWin)}
+										className='text-white px-8 py-4 rounded-full text-lg font-semibold shadow-lg'
+										style={{
+											background: completedActions.has(currentQuickWin)
+												? "var(--frosted-mint-600)"
+												: "var(--pitch-black-600)",
+										}}
+										whileHover={{ scale: 1.02 }}
+										whileTap={{ scale: 0.98 }}
+									>
+										{completedActions.has(currentQuickWin) ? (
+											<>
+												<Check className='w-5 h-5 inline mr-2' />
+												Klart!
+											</>
+										) : (
+											"Markera som klar"
+										)}
+									</motion.button>
+									<motion.button
+										onClick={() => setCurrentQuickWin(getRandomQuickWin())}
+										className='text-white px-8 py-4 rounded-full text-lg font-semibold shadow-lg'
+										style={{
+											background: `linear-gradient(45deg, var(--baltic-blue-500), var(--frosted-mint-500))`,
+										}}
+										whileHover={{ scale: 1.02 }}
+										whileTap={{ scale: 0.98 }}
+									>
+										<RefreshCw className='w-5 h-5 inline mr-2' />
+										Ny aktivitet
+									</motion.button>
+								</div>
+							</motion.div>
+						</AnimatePresence>
 					</div>
-				</div>
+				</motion.div>
 
-				{/* Categories Grid */}
-				<div className='mb-12'>
-					<h2 className='text-3xl font-bold text-center text-green-800 mb-8'>
-						Choose Your Mood Booster Category 📋
-					</h2>
-					<div className='grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8'>
+				{/* Categories Section */}
+				<motion.div
+					className='mt-8'
+					initial={{ opacity: 0, y: 20 }}
+					animate={{ opacity: 1, y: 0 }}
+					transition={{ duration: 0.5, delay: 0.4 }}
+				>
+					<h3
+						className='text-2xl sm:text-3xl font-bold text-center mb-6'
+						style={{ color: "var(--pitch-black-800)" }}
+					>
+						Välj din kategori
+					</h3>
+					<div className='grid sm:grid-cols-2 lg:grid-cols-3 gap-4'>
 						{moodBoosters.map((category, index) => (
-							<button
+							<motion.button
 								key={index}
 								onClick={() =>
 									setSelectedCategory(selectedCategory === index ? null : index)
 								}
-								className={`bg-white/80 backdrop-blur-sm rounded-2xl sm:rounded-[3rem] shadow-lg p-6 text-center hover:shadow-xl transition-all transform hover:scale-105 ${
+								className={`bg-white/90 backdrop-blur-md rounded-2xl shadow-lg p-6 text-center transition-all ${
 									selectedCategory === index
-										? "ring-4 ring-green-300 bg-green-50/80"
+										? "ring-4 ring-frosted-mint-500"
 										: ""
 								}`}
+								whileHover={{ scale: 1.02, y: -2 }}
+								whileTap={{ scale: 0.98 }}
 							>
-								<div className='text-4xl mb-3'>{category.emoji}</div>
-								<h3 className='text-lg font-bold text-green-700'>
+								<div className='flex justify-center mb-3'>
+									<category.icon
+										className='w-12 h-12'
+										style={{ color: "var(--pitch-black-700)" }}
+									/>
+								</div>
+								<h4
+									className='text-lg font-bold'
+									style={{ color: "var(--pitch-black-800)" }}
+								>
 									{category.category}
-								</h3>
-								<p className='text-gray-600 text-sm mt-2'>
-									{category.actions.length} actions available
+								</h4>
+								<p
+									className='text-sm mt-2'
+									style={{ color: "var(--pitch-black-600)" }}
+								>
+									{category.actions.length} aktiviteter
 								</p>
-							</button>
+							</motion.button>
 						))}
 					</div>
+				</motion.div>
 
-					{/* Selected Category Actions */}
+				{/* Selected Category Actions */}
+				<AnimatePresence>
 					{selectedCategory !== null && (
-						<div className='bg-white/80 backdrop-blur-sm rounded-2xl sm:rounded-[3rem] shadow-lg p-8'>
-							<h3 className='text-2xl font-bold text-green-700 mb-6 text-center'>
-								{moodBoosters[selectedCategory].emoji}{" "}
-								{moodBoosters[selectedCategory].category}
-							</h3>
-							<div className='grid md:grid-cols-2 gap-4'>
+						<motion.div
+							initial={{ opacity: 0, height: 0 }}
+							animate={{ opacity: 1, height: "auto" }}
+							exit={{ opacity: 0, height: 0 }}
+							transition={{ duration: 0.3 }}
+							className='mt-8 bg-white/90 backdrop-blur-md rounded-2xl sm:rounded-[3rem] shadow-lg p-6 sm:p-8'
+						>
+							<div className='flex items-center justify-center gap-3 mb-6'>
+								{(() => {
+									const Icon = moodBoosters[selectedCategory].icon;
+									return (
+										<Icon
+											className='w-8 h-8'
+											style={{ color: "var(--pitch-black-700)" }}
+										/>
+									);
+								})()}
+								<h4
+									className='text-2xl font-bold'
+									style={{ color: "var(--pitch-black-800)" }}
+								>
+									{moodBoosters[selectedCategory].category}
+								</h4>
+							</div>
+							<div className='grid sm:grid-cols-2 gap-3'>
 								{moodBoosters[selectedCategory].actions.map(
 									(action, actionIndex) => (
-										<div
+										<motion.div
 											key={actionIndex}
-											className={`p-4 rounded-2xl border-2 cursor-pointer transition-all ${
-												completedActions.has(action)
-													? "border-green-300 bg-green-50/80 text-green-800"
-													: "border-gray-200 hover:border-green-300 hover:bg-green-50/80"
+											className={`p-4 rounded-xl border-2 cursor-pointer transition-all ${
+												completedActions.has(action) ? "bg-frosted-mint-50" : ""
 											}`}
+											style={{
+												borderColor: completedActions.has(action)
+													? "var(--frosted-mint-500)"
+													: "var(--pitch-black-200)",
+												color: completedActions.has(action)
+													? "var(--frosted-mint-800)"
+													: "var(--pitch-black-800)",
+											}}
 											onClick={() => toggleAction(action)}
+											whileHover={{ scale: 1.02 }}
+											whileTap={{ scale: 0.98 }}
 										>
 											<div className='flex items-center justify-between'>
 												<span className='font-medium'>{action}</span>
-												<span className='text-xl'>
-													{completedActions.has(action) ? "✅" : "⭕"}
-												</span>
+												{completedActions.has(action) ? (
+													<Check
+														className='w-5 h-5'
+														style={{ color: "var(--frosted-mint-600)" }}
+													/>
+												) : (
+													<Circle
+														className='w-5 h-5'
+														style={{ color: "var(--pitch-black-400)" }}
+													/>
+												)}
 											</div>
-										</div>
+										</motion.div>
 									)
 								)}
 							</div>
-						</div>
+						</motion.div>
 					)}
-				</div>
+				</AnimatePresence>
 
 				{/* Progress Section */}
-				{completedActions.size > 0 && (
-					<div className='bg-green-50/80 backdrop-blur-sm border-l-4 border-green-400 p-6 rounded-2xl sm:rounded-[3rem]'>
-						<div className='flex'>
-							<div className='shrink-0'>
-								<span className='text-2xl'>🎉</span>
+				<AnimatePresence>
+					{completedActions.size > 0 && (
+						<motion.div
+							initial={{ opacity: 0, y: 20 }}
+							animate={{ opacity: 1, y: 0 }}
+							exit={{ opacity: 0, y: -20 }}
+							className='mt-8 bg-frosted-mint-50 border-l-4 p-6 rounded-2xl'
+							style={{ borderColor: "var(--frosted-mint-600)" }}
+						>
+							<div className='flex items-start'>
+								<Sparkles
+									className='w-8 h-8 mr-4'
+									style={{ color: "var(--frosted-mint-600)" }}
+								/>
+								<div>
+									<h3
+										className='text-lg font-bold'
+										style={{ color: "var(--frosted-mint-800)" }}
+									>
+										Fantastiska framsteg!
+									</h3>
+									<p
+										className='mt-2'
+										style={{ color: "var(--frosted-mint-700)" }}
+									>
+										Du har genomfört {completedActions.size} peppande aktivitet
+										{completedActions.size > 1 ? "er" : ""}! Fortsätt så - varje
+										litet steg räknas!
+									</p>
+								</div>
 							</div>
-							<div className='ml-3'>
-								<h3 className='text-lg font-medium text-green-800'>
-									Amazing Progress!
-								</h3>
-								<p className='mt-2 text-green-700'>
-									You've completed {completedActions.size} mood-boosting action
-									{completedActions.size > 1 ? "s" : ""}! Keep up the fantastic
-									work - every small step counts! 💪
-								</p>
-							</div>
-						</div>
-					</div>
-				)}
-
-				{/* Tips Section */}
-				<div className='bg-white/80 backdrop-blur-sm rounded-2xl sm:rounded-[3rem] shadow-lg p-8 mt-8'>
-					<h2 className='text-2xl font-bold text-green-700 mb-6 text-center'>
-						Pro Tips for Success 💡
-					</h2>
-					<div className='grid md:grid-cols-2 gap-8'>
-						<div>
-							<h3 className='text-lg font-semibold text-green-600 mb-3'>
-								🎯 Start Small
-							</h3>
-							<p className='text-gray-700'>
-								Pick one action that feels easy right now. Success builds
-								momentum, and small wins lead to bigger changes!
-							</p>
-						</div>
-						<div>
-							<h3 className='text-lg font-semibold text-green-600 mb-3'>
-								⏰ Set a Timer
-							</h3>
-							<p className='text-gray-700'>
-								Give yourself just 5-10 minutes for each action. You'll be
-								surprised how much you can accomplish in a short time!
-							</p>
-						</div>
-						<div>
-							<h3 className='text-lg font-semibold text-green-600 mb-3'>
-								🔄 Make it Routine
-							</h3>
-							<p className='text-gray-700'>
-								Try to do one mood-boosting action every day. Building positive
-								habits creates lasting change in how you feel.
-							</p>
-						</div>
-						<div>
-							<h3 className='text-lg font-semibold text-green-600 mb-3'>
-								🎊 Celebrate Wins
-							</h3>
-							<p className='text-gray-700'>
-								Acknowledge every action you complete, no matter how small.
-								You're taking care of yourself, and that's worth celebrating!
-							</p>
-						</div>
-					</div>
-				</div>
+						</motion.div>
+					)}
+				</AnimatePresence>
 			</PageContainer>
 		</AppLayout>
 	);

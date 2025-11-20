@@ -2,22 +2,32 @@
 // Endast AppLayout och PageContainer behövs
 import AppLayout from "@/components/AppLayout";
 import PageContainer from "@/components/PageContainer";
+import {
+	Heart,
+	AlertTriangle,
+	MessageCircle,
+	Users,
+	Phone,
+	Lightbulb,
+	Brain,
+	Activity,
+} from "lucide-react";
 
 // Förenklad lista för lokala/allmänna svenska resurser
 const supportPoints = [
 	{
 		title: "Vän & Familj",
-		icon: "🫂",
+		Icon: Users,
 		tips: "Ventilera frustrationen högt. Det är inte 'klagomål', det är mental hygien.",
 	},
 	{
 		title: "Vårdcentral / Psykolog",
-		icon: "🗣️",
+		Icon: MessageCircle,
 		tips: "Boka tid. Jobbsökande är en legitím stressfaktor som kan behöva professionell hjälp.",
 	},
 	{
 		title: "Jourhavande Medmänniska",
-		icon: "📞",
+		Icon: Phone,
 		tips: "Anonyma samtal kan lätta på trycket. Flera organisationer erbjuder chatt/telefonstöd.",
 	},
 ];
@@ -29,8 +39,16 @@ export default function Support() {
 		<AppLayout>
 			<PageContainer>
 				<div className='text-center mb-12'>
-					<h1 className='text-4xl font-bold text-purple-800 mb-4'>
-						Du är inte ensam i kampen ❤️
+					<h1
+						className='text-4xl font-bold mb-4'
+						style={{ color: "var(--wine-plum-700)" }}
+					>
+						Du är inte ensam i kampen{" "}
+						<Heart
+							className='w-10 h-10 inline mb-4 animate-pulse'
+							style={{ color: "var(--frosted-mint-600)" }}
+							fill='currentColor'
+						/>
 					</h1>
 					<p className='text-xl text-gray-700 max-w-3xl mx-auto'>
 						Jobbsökandet är en av livets tuffaste stressfaktorer. Kom ihåg att
@@ -42,7 +60,10 @@ export default function Support() {
 				<div className='bg-red-50/80 backdrop-blur-sm border-l-4 border-red-400 p-6 rounded-2xl sm:rounded-[3rem] mb-12'>
 					<div className='flex'>
 						<div className='shrink-0'>
-							<span className='text-2xl'>⚠️</span>
+							<AlertTriangle
+								className='w-8 h-8'
+								style={{ color: "var(--wine-plum-600)" }}
+							/>
 						</div>
 						<div className='ml-3'>
 							<h3 className='text-lg font-medium text-red-800'>
@@ -61,8 +82,15 @@ export default function Support() {
 
 				{/* Prata om det - Ventilation Section */}
 				<div className='mb-12'>
-					<h2 className='text-3xl font-bold text-center text-purple-800 mb-8'>
-						Prata om det: Ventilera & Lätta på trycket 🗣️
+					<h2
+						className='text-3xl font-bold text-center mb-8 flex items-center justify-center gap-3'
+						style={{ color: "var(--wine-plum-700)" }}
+					>
+						<MessageCircle
+							className='w-8 h-8'
+							style={{ color: "var(--wine-plum-600)" }}
+						/>
+						Prata om det: Ventilera & Lätta på trycket
 					</h2>
 					<div className='grid md:grid-cols-3 gap-6'>
 						{supportPoints.map((point, index) => (
@@ -71,8 +99,14 @@ export default function Support() {
 								className='bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg p-6 hover:shadow-xl transition-shadow'
 							>
 								<div className='flex items-center mb-3'>
-									<span className='text-2xl mr-2'>{point.icon}</span>
-									<h3 className='text-xl font-bold text-purple-700'>
+									<point.Icon
+										className='w-7 h-7 mr-3'
+										style={{ color: "var(--wine-plum-600)" }}
+									/>
+									<h3
+										className='text-xl font-bold'
+										style={{ color: "var(--wine-plum-600)" }}
+									>
 										{point.title}
 									</h3>
 								</div>
@@ -84,13 +118,27 @@ export default function Support() {
 
 				{/* Bryt Spiralen - Action Section */}
 				<div className='bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg p-8'>
-					<h2 className='text-3xl font-bold text-purple-700 mb-6 text-center'>
-						Bryt den negativa spiralen (Action Plan) 💡
+					<h2
+						className='text-3xl font-bold mb-6 text-center flex items-center justify-center gap-3'
+						style={{ color: "var(--wine-plum-600)" }}
+					>
+						<Lightbulb
+							className='w-8 h-8'
+							style={{ color: "var(--wine-plum-500)" }}
+						/>
+						Bryt den negativa spiralen (Action Plan)
 					</h2>
 					<div className='grid md:grid-cols-2 gap-6'>
 						<div>
-							<h3 className='text-lg font-semibold text-purple-600 mb-3'>
-								🧠 Skapa Struktur & Gränser
+							<h3
+								className='text-lg font-semibold mb-3 flex items-center gap-2'
+								style={{ color: "var(--wine-plum-500)" }}
+							>
+								<Brain
+									className='w-5 h-5'
+									style={{ color: "var(--wine-plum-500)" }}
+								/>
+								Skapa Struktur & Gränser
 							</h3>
 							<ul className='text-gray-700 space-y-2'>
 								<li>
@@ -112,8 +160,15 @@ export default function Support() {
 							</ul>
 						</div>
 						<div>
-							<h3 className='text-lg font-semibold text-purple-600 mb-3'>
-								🏃 Fysisk & Mental Återhämtning
+							<h3
+								className='text-lg font-semibold mb-3 flex items-center gap-2'
+								style={{ color: "var(--wine-plum-500)" }}
+							>
+								<Activity
+									className='w-5 h-5'
+									style={{ color: "var(--wine-plum-500)" }}
+								/>
+								Fysisk & Mental Återhämtning
 							</h3>
 							<ul className='text-gray-700 space-y-2'>
 								<li>
