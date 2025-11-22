@@ -77,17 +77,18 @@
 	--wine-plum-950: #1a090d;
 
 	/* Pitch Black */
-	--pitch-black-50: #f5f7ee;
-	--pitch-black-100: #ebefdc;
-	--pitch-black-200: #d6deba;
-	--pitch-black-300: #c2ce97;
-	--pitch-black-400: #aebe74;
-	--pitch-black-500: #9aad52;
-	--pitch-black-600: #7b8b41;
-	--pitch-black-700: #5c6831;
-	--pitch-black-800: #3d4521;
-	--pitch-black-900: #1f2310;
-	--pitch-black-950: #15180b;
+
+	--pitch-black-950: #191919ff;
+	--pitch-black-900: #323232;
+	--pitch-black-800: #4b4b4b;
+	--pitch-black-700: #646464;
+	--pitch-black-600: #7d7d7d;
+	--pitch-black-500: #969696;
+	--pitch-black-400: #afafaf;
+	--pitch-black-300: #c8c8c8;
+	--pitch-black-200: #e1e1e1;
+	--pitch-black-100: #f0f0f0;
+	--pitch-black-50: #f8f8f8;
 
 	/* Theme colors */
 	--background: var(--frosted-mint-50);
@@ -150,6 +151,26 @@ h2,
 .font-dm-sans {
 	font-family: var(--font-dm-sans), "DM Sans", sans-serif !important;
 	font-weight: 600;
+}
+
+button {
+	cursor: pointer;
+}
+
+.modal {
+	backdrop-filter: blur(15px);
+	background-color: rgba(157, 168, 168, 0.041);
+	border-radius: 18px;
+	border-color: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 50;
+	width: 100%;
+	height: 100%;
+	margin: auto;
+
+	overflow-y: auto;
 }
 
 /* Apply Inter to all other text */

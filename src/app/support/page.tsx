@@ -56,30 +56,6 @@ export default function Support() {
 					</p>
 				</div>
 
-				{/* Akut Hjälp / Immediate Crisis Section (Lokaliserad till Sverige) */}
-				<div className='bg-red-50/80 backdrop-blur-sm border-l-4 border-red-400 p-6 rounded-2xl sm:rounded-[3rem] mb-12'>
-					<div className='flex'>
-						<div className='shrink-0'>
-							<AlertTriangle
-								className='w-8 h-8'
-								style={{ color: "var(--wine-plum-600)" }}
-							/>
-						</div>
-						<div className='ml-3'>
-							<h3 className='text-lg font-medium text-red-800'>
-								Behöver du akut hjälp?
-							</h3>
-							<ul className='mt-2 text-red-700 font-semibold space-y-1'>
-								<li>• Ring 112 vid livsfara eller akut psykisk kris.</li>
-								<li>
-									• Ring 1177 för rådgivning om vård och närmsta psykiatriska
-									akutmottagning.
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-
 				{/* Prata om det - Ventilation Section */}
 				<div className='mb-12'>
 					<h2
@@ -140,22 +116,34 @@ export default function Support() {
 								/>
 								Skapa Struktur & Gränser
 							</h3>
-							<ul className='text-gray-700 space-y-2'>
-								<li>
-									• **Tidssätt sökandet:** Bestäm 3 timmar per dag. Utanför den
-									tiden är du ledig.
+							<ul className='text-gray-700 space-y-3'>
+								<li className='flex items-start gap-2'>
+									<span className='font-bold mt-0.5'>•</span>
+									<div>
+										<span className='font-semibold'>Tidssätt sökandet:</span>{" "}
+										Bestäm 3 timmar per dag. Utanför den tiden är du ledig.
+									</div>
 								</li>
-								<li>
-									• **Skilj på plats:** Sök inte jobb i soffan. Hitta en
-									dedikerad "jobbstol".
+								<li className='flex items-start gap-2'>
+									<span className='font-bold mt-0.5'>•</span>
+									<div>
+										<span className='font-semibold'>Skilj på plats:</span> Sök
+										inte jobb i soffan. Hitta en dedikerad "jobbstol".
+									</div>
 								</li>
-								<li>
-									• **Fira en liten seger:** Varje skickad ansökan är en vinst.
-									Belöna dig själv.
+								<li className='flex items-start gap-2'>
+									<span className='font-bold mt-0.5'>•</span>
+									<div>
+										<span className='font-semibold'>Fira en liten seger:</span>{" "}
+										Varje skickad ansökan är en vinst. Belöna dig själv.
+									</div>
 								</li>
-								<li>
-									• **Begränsa scrollandet:** Öppna inte jobbportaler efter kl.
-									17.00.
+								<li className='flex items-start gap-2'>
+									<span className='font-bold mt-0.5'>•</span>
+									<div>
+										<span className='font-semibold'>Begränsa scrollandet:</span>{" "}
+										Öppna inte jobbportaler efter kl. 17.00.
+									</div>
 								</li>
 							</ul>
 						</div>
@@ -170,19 +158,58 @@ export default function Support() {
 								/>
 								Fysisk & Mental Återhämtning
 							</h3>
-							<ul className='text-gray-700 space-y-2'>
-								<li>
-									• **Rörelse:** Minst 20 minuter. Ta en promenad utan mobil.
+							<ul className='text-gray-700 space-y-3'>
+								<li className='flex items-start gap-2'>
+									<span className='font-bold mt-0.5'>•</span>
+									<div>
+										<span className='font-semibold'>Rörelse:</span> Minst 20
+										minuter. Ta en promenad utan mobil.
+									</div>
 								</li>
-								<li>
-									• **Aktiv distraktion:** Gör något som kräver 100% fokus
-									(bakning, bygge, musik).
+								<li className='flex items-start gap-2'>
+									<span className='font-bold mt-0.5'>•</span>
+									<div>
+										<span className='font-semibold'>Aktiv distraktion:</span>{" "}
+										Gör något som kräver 100% fokus (bakning, bygge, musik).
+									</div>
 								</li>
-								<li>
-									• **Natur:** Gå ut i naturen varje dag. Lämna CV-et hemma.
+								<li className='flex items-start gap-2'>
+									<span className='font-bold mt-0.5'>•</span>
+									<div>
+										<span className='font-semibold'>Natur:</span> Gå ut i
+										naturen varje dag. Lämna CV-et hemma.
+									</div>
 								</li>
+								<li className='flex items-start gap-2'>
+									<span className='font-bold mt-0.5'>•</span>
+									<div>
+										<span className='font-semibold'>Sömn:</span> Prioritera
+										sömn. Negativitet frodas i trötthet.
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+
+				{/* Akut Hjälp / Immediate Crisis Section (Lokaliserad till Sverige) */}
+				<div className='bg-red-50/80 backdrop-blur-sm border-l-4 border-red-400 p-6 rounded-2xl sm:rounded-[3rem] my-12'>
+					<div className='flex'>
+						<div className='shrink-0'>
+							<AlertTriangle
+								className='w-8 h-8'
+								style={{ color: "var(--wine-plum-600)" }}
+							/>
+						</div>
+						<div className='ml-3'>
+							<h3 className='text-lg font-medium text-red-800'>
+								Behöver du akut hjälp?
+							</h3>
+							<ul className='mt-2 text-red-700 font-semibold space-y-1'>
+								<li>• Ring 112 vid livsfara eller akut psykisk kris.</li>
 								<li>
-									• **Sömn:** Prioritera sömn. Negativitet frodas i trötthet.
+									• Ring 1177 för rådgivning om vård och närmsta psykiatriska
+									akutmottagning.
 								</li>
 							</ul>
 						</div>

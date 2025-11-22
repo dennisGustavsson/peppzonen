@@ -40,19 +40,19 @@ export default function Navbar() {
 						href='/support'
 						className='text-wine-600 hover:text-wine-700 transition-colors font-semibold'
 					>
-						Support
+						Stöd
 					</Link>
 					<Link
 						href='/actions'
 						className='text-wine-600 hover:text-wine-700 transition-colors font-semibold'
 					>
-						Actions
+						Aktiviteter
 					</Link>
 					<Link
 						href='/personality-test'
 						className='text-wine-600 hover:text-wine-700 transition-colors font-semibold'
 					>
-						Fun Test
+						Opersonlighets-test
 					</Link>
 				</div>
 
@@ -79,21 +79,21 @@ export default function Navbar() {
 							className='block py-3 px-4 text-wine-600 hover:text-wine-700 hover:bg-gray-50 rounded-lg transition-colors font-semibold'
 							onClick={closeMobileMenu}
 						>
-							Support
+							Stöd
 						</Link>
 						<Link
 							href='/actions'
 							className='block py-3 px-4 text-wine-600 hover:text-wine-700 hover:bg-gray-50 rounded-lg transition-colors font-semibold'
 							onClick={closeMobileMenu}
 						>
-							Actions
+							Aktiviteter
 						</Link>
 						<Link
 							href='/personality-test'
 							className='block py-3 px-4 text-wine-600 hover:text-wine-700 hover:bg-gray-50 rounded-lg transition-colors font-semibold'
 							onClick={closeMobileMenu}
 						>
-							Fun Test
+							Opersonlighets-test
 						</Link>
 					</div>
 				</div>

@@ -1,7 +1,8 @@
 "use client";
-import { useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { use, useEffect, useRef, useState } from "react";
+import { motion, AnimatePresence, useReducedMotion } from "motion/react";
 import AppLayout from "@/components/AppLayout";
+import ModalComponent from "@/components/ModalComponent";
 import PageContainer from "@/components/PageContainer";
 import {
 	Sparkles,
@@ -15,6 +16,7 @@ import {
 	Check,
 	Circle,
 	Zap,
+	X,
 } from "lucide-react";
 
 const moodBoosters = [
@@ -108,6 +110,9 @@ const quickWins = [
 export default function Actions() {
 	const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
 	const [completedActions, setCompletedActions] = useState(new Set<string>());
+	const [isModalOpen, setIsModalOpen] = useState(false);
+	// const [currentQuickWin, setCurrentQuickWin] = useState(getRandomQuickWin());
+	const [showProgressToast, setShowProgressToast] = useState(false);
 
 	const toggleAction = (action: string) => {
 		const newCompleted = new Set(completedActions);
@@ -119,18 +124,68 @@ export default function Actions() {
 		setCompletedActions(newCompleted);
 	};
 
-	const getRandomQuickWin = () => {
-		const randomWin = quickWins[Math.floor(Math.random() * quickWins.length)];
-		return randomWin;
+	const handleOpenCategory = (index: number) => {
+		setSelectedCategory(index);
+		setIsModalOpen(true);
+		console.log("opening modal");
 	};
 
-	const [currentQuickWin, setCurrentQuickWin] = useState(getRandomQuickWin());
+	// const getRandomQuickWin = () => {
+	// 	const randomWin = quickWins[Math.floor(Math.random() * quickWins.length)];
+	// 	return randomWin;
+	// };
+	const handleCloseModal = () => {
+		setIsModalOpen(false);
+	};
+
+	const dismissTimerRef = useRef<number | null>(null);
+
+	useEffect(() => {
+		if (dismissTimerRef.current) {
+			clearTimeout(dismissTimerRef.current);
+			dismissTimerRef.current = null;
+		}
+		if (completedActions.size > 0) {
+			setShowProgressToast(true);
+			// Auto-dismiss after 4s
+			dismissTimerRef.current = window.setTimeout(() => {
+				setShowProgressToast(false);
+				dismissTimerRef.current = null;
+			}, 3000);
+		} else {
+			// Hide immediately when no actions
+			setShowProgressToast(false);
+		}
+
+		return () => {
+			if (dismissTimerRef.current) {
+				clearTimeout(dismissTimerRef.current);
+			}
+		};
+	}, [completedActions.size]);
 
 	return (
 		<AppLayout>
 			<PageContainer>
-				{/* Quick Win Section */}
-				<motion.div
+				<div className='text-center mb-12'>
+					<h1
+						className='text-4xl font-bold mb-4'
+						style={{ color: "var(--wine-plum-700)" }}
+					>
+						Behöver du en snabb aktivitet för att skifta fokus?
+						<Heart
+							className='w-10 h-10 inline mb-4 animate-pulse'
+							style={{ color: "var(--frosted-mint-600)" }}
+							fill='currentColor'
+						/>
+					</h1>
+					<p className='text-xl text-gray-700 max-w-3xl mx-auto'>
+						Jobbsökandet är en av livets tuffaste stressfaktorer. Ibland behöver
+						vi bryta det negativa tankemönstret. Här är några förslag för att
+						skifta fokus en stund.
+					</p>
+				</div>
+				{/* <motion.div
 					className='bg-white/90 backdrop-blur-md border rounded-2xl sm:rounded-[3rem] shadow-xl/10 pt-8 sm:mt-3 mt-8 sm:pt-12 px-6 sm:px-16 pb-12 sm:pb-16 flex-1 flex flex-col'
 					initial={{ scale: 0.9, opacity: 0 }}
 					animate={{ scale: 1, opacity: 1 }}
@@ -138,10 +193,6 @@ export default function Actions() {
 				>
 					<div className='flex-1 flex flex-col justify-center'>
 						<div className='flex items-center justify-center gap-3 mb-6'>
-							<Zap
-								className='w-8 h-8'
-								style={{ color: "var(--pitch-black-700)" }}
-							/>
 							<h2
 								className='text-3xl sm:text-4xl font-bold text-center'
 								style={{ color: "var(--pitch-black-800)" }}
@@ -172,26 +223,6 @@ export default function Actions() {
 								</p>
 								<div className='flex justify-center items-center gap-4 flex-wrap'>
 									<motion.button
-										onClick={() => toggleAction(currentQuickWin)}
-										className='text-white px-8 py-4 rounded-full text-lg font-semibold shadow-lg'
-										style={{
-											background: completedActions.has(currentQuickWin)
-												? "var(--frosted-mint-600)"
-												: "var(--pitch-black-600)",
-										}}
-										whileHover={{ scale: 1.02 }}
-										whileTap={{ scale: 0.98 }}
-									>
-										{completedActions.has(currentQuickWin) ? (
-											<>
-												<Check className='w-5 h-5 inline mr-2' />
-												Klart!
-											</>
-										) : (
-											"Markera som klar"
-										)}
-									</motion.button>
-									<motion.button
 										onClick={() => setCurrentQuickWin(getRandomQuickWin())}
 										className='text-white px-8 py-4 rounded-full text-lg font-semibold shadow-lg'
 										style={{
@@ -203,12 +234,44 @@ export default function Actions() {
 										<RefreshCw className='w-5 h-5 inline mr-2' />
 										Ny aktivitet
 									</motion.button>
+									<label
+										className='flex items-center gap-3 cursor-pointer select-none group'
+										style={{ color: "var(--pitch-black-800)" }}
+									>
+										<input
+											type='checkbox'
+											className='peer sr-only'
+											checked={completedActions.has(currentQuickWin)}
+											onChange={() => toggleAction(currentQuickWin)}
+											aria-label='Markera aktiviteten som klar'
+										/>
+										<motion.div
+											whileHover={{ scale: 1.05 }}
+											whileTap={{ scale: 0.95 }}
+											className='w-7 h-7 rounded-md border-2 flex items-center justify-center transition-colors
+                border-pitch-black-400 peer-checked:border-frosted-mint-600
+                peer-checked:bg-frosted-mint-500 bg-white/80 backdrop-blur'
+											style={{
+												borderColor: completedActions.has(currentQuickWin)
+													? "var(--frosted-mint-600)"
+													: "var(--pitch-black-400)",
+											}}
+										>
+											{completedActions.has(currentQuickWin) && (
+												<Check className='w-4 h-4' style={{ color: "white" }} />
+											)}
+										</motion.div>
+										<span className='text-lg font-medium'>
+											{completedActions.has(currentQuickWin)
+												? "Klart!"
+												: "Markera som klar"}
+										</span>
+									</label>
 								</div>
 							</motion.div>
 						</AnimatePresence>
 					</div>
-				</motion.div>
-
+				</motion.div> */}
 				{/* Categories Section */}
 				<motion.div
 					className='mt-8'
@@ -226,8 +289,9 @@ export default function Actions() {
 						{moodBoosters.map((category, index) => (
 							<motion.button
 								key={index}
-								onClick={() =>
-									setSelectedCategory(selectedCategory === index ? null : index)
+								onClick={
+									() => handleOpenCategory(index)
+									// setSelectedCategory(selectedCategory === index ? null : index)
 								}
 								className={`bg-white/90 backdrop-blur-md rounded-2xl shadow-lg p-6 text-center transition-all ${
 									selectedCategory === index
@@ -259,84 +323,89 @@ export default function Actions() {
 						))}
 					</div>
 				</motion.div>
-
 				{/* Selected Category Actions */}
-				<AnimatePresence>
-					{selectedCategory !== null && (
-						<motion.div
-							initial={{ opacity: 0, height: 0 }}
-							animate={{ opacity: 1, height: "auto" }}
-							exit={{ opacity: 0, height: 0 }}
-							transition={{ duration: 0.3 }}
-							className='mt-8 bg-white/90 backdrop-blur-md rounded-2xl sm:rounded-[3rem] shadow-lg p-6 sm:p-8'
-						>
-							<div className='flex items-center justify-center gap-3 mb-6'>
-								{(() => {
-									const Icon = moodBoosters[selectedCategory].icon;
-									return (
-										<Icon
-											className='w-8 h-8'
-											style={{ color: "var(--pitch-black-700)" }}
-										/>
-									);
-								})()}
-								<h4
-									className='text-2xl font-bold'
-									style={{ color: "var(--pitch-black-800)" }}
-								>
-									{moodBoosters[selectedCategory].category}
-								</h4>
-							</div>
-							<div className='grid sm:grid-cols-2 gap-3'>
-								{moodBoosters[selectedCategory].actions.map(
-									(action, actionIndex) => (
-										<motion.div
-											key={actionIndex}
-											className={`p-4 rounded-xl border-2 cursor-pointer transition-all ${
-												completedActions.has(action) ? "bg-frosted-mint-50" : ""
-											}`}
-											style={{
-												borderColor: completedActions.has(action)
-													? "var(--frosted-mint-500)"
-													: "var(--pitch-black-200)",
-												color: completedActions.has(action)
-													? "var(--frosted-mint-800)"
-													: "var(--pitch-black-800)",
-											}}
-											onClick={() => toggleAction(action)}
-											whileHover={{ scale: 1.02 }}
-											whileTap={{ scale: 0.98 }}
-										>
-											<div className='flex items-center justify-between'>
-												<span className='font-medium'>{action}</span>
-												{completedActions.has(action) ? (
-													<Check
-														className='w-5 h-5'
-														style={{ color: "var(--frosted-mint-600)" }}
-													/>
-												) : (
-													<Circle
-														className='w-5 h-5'
-														style={{ color: "var(--pitch-black-400)" }}
-													/>
-												)}
-											</div>
-										</motion.div>
-									)
-								)}
-							</div>
-						</motion.div>
-					)}
-				</AnimatePresence>
-
+				<ModalComponent
+					shouldShow={isModalOpen}
+					onRequestClose={handleCloseModal}
+				>
+					<AnimatePresence>
+						{selectedCategory !== null && (
+							<motion.div
+								initial={{ opacity: 0, height: 0 }}
+								animate={{ opacity: 1, height: "auto" }}
+								exit={{ opacity: 0, height: 0 }}
+								transition={{ duration: 0.3 }}
+								className='mt-8 bg-white/90 backdrop-blur-md rounded-2xl sm:rounded-[3rem] shadow-lg p-6 sm:p-8'
+							>
+								<div className='flex items-center justify-center gap-3 mb-6'>
+									{(() => {
+										const Icon = moodBoosters[selectedCategory].icon;
+										return (
+											<Icon
+												className='w-8 h-8'
+												style={{ color: "var(--pitch-black-700)" }}
+											/>
+										);
+									})()}
+									<h4
+										className='text-2xl font-bold'
+										style={{ color: "var(--pitch-black-800)" }}
+									>
+										{moodBoosters[selectedCategory].category}
+									</h4>
+								</div>
+								<div className='grid sm:grid-cols-2 gap-3'>
+									{moodBoosters[selectedCategory].actions.map(
+										(action, actionIndex) => (
+											<motion.div
+												key={actionIndex}
+												className={`p-4 rounded-xl border-2 cursor-pointer transition-all ${
+													completedActions.has(action)
+														? "bg-frosted-mint-50"
+														: ""
+												}`}
+												style={{
+													borderColor: completedActions.has(action)
+														? "var(--frosted-mint-500)"
+														: "var(--pitch-black-200)",
+													color: completedActions.has(action)
+														? "var(--frosted-mint-800)"
+														: "var(--pitch-black-800)",
+												}}
+												onClick={() => toggleAction(action)}
+												whileHover={{ scale: 1.02 }}
+												whileTap={{ scale: 0.98 }}
+											>
+												<div className='flex items-center justify-between'>
+													<span className='font-medium'>{action}</span>
+													{completedActions.has(action) ? (
+														<Check
+															className='w-5 h-5'
+															style={{ color: "var(--frosted-mint-600)" }}
+														/>
+													) : (
+														<Circle
+															className='w-5 h-5'
+															style={{ color: "var(--pitch-black-400)" }}
+														/>
+													)}
+												</div>
+											</motion.div>
+										)
+									)}
+								</div>
+							</motion.div>
+						)}
+					</AnimatePresence>
+				</ModalComponent>
 				{/* Progress Section */}
 				<AnimatePresence>
-					{completedActions.size > 0 && (
+					{showProgressToast && (
 						<motion.div
 							initial={{ opacity: 0, y: 20 }}
 							animate={{ opacity: 1, y: 0 }}
 							exit={{ opacity: 0, y: -20 }}
-							className='mt-8 bg-frosted-mint-50 border-l-4 p-6 rounded-2xl'
+							className='mt-8 bg-frosted-mint-50 border-b-3 bg-white/55 backdrop-blur-lg shadow-2xl border p-6 rounded-4xl fixed top-4 left-1/2 -translate-x-1/2 z-50'
 							style={{ borderColor: "var(--frosted-mint-600)" }}
 						>
 							<div className='flex items-start'>
@@ -360,6 +429,22 @@ export default function Actions() {
 										litet steg räknas!
 									</p>
 								</div>
+								<button
+									aria-label='Stäng meddelande'
+									onClick={() => {
+										setShowProgressToast(false);
+										if (dismissTimerRef.current) {
+											clearTimeout(dismissTimerRef.current);
+											dismissTimerRef.current = null;
+										}
+									}}
+									className='p-1 rounded hover:bg-frosted-mint-100 transition'
+								>
+									<X
+										className='w-4 h-4'
+										style={{ color: "var(--frosted-mint-600)" }}
+									/>
+								</button>
 							</div>
 						</motion.div>
 					)}

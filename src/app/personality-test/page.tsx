@@ -229,16 +229,23 @@ export default function PersonalityTest() {
 	const [currentQuestion, setCurrentQuestion] = useState(0);
 	const [answers, setAnswers] = useState<string[]>([]);
 	const [showResult, setShowResult] = useState(false);
+	const [isTransitioning, setIsTransitioning] = useState(false);
 
 	const handleAnswer = (answerType: string) => {
+		setIsTransitioning(true);
 		const newAnswers = [...answers, answerType];
 		setAnswers(newAnswers);
+		setTimeout(() => {
+			const newAnswers = [...answers, answerType];
+			setAnswers(newAnswers);
 
-		if (currentQuestion < questions.length - 1) {
-			setCurrentQuestion(currentQuestion + 1);
-		} else {
-			setShowResult(true);
-		}
+			if (currentQuestion < questions.length - 1) {
+				setCurrentQuestion(currentQuestion + 1);
+			} else {
+				setShowResult(true);
+			}
+			setIsTransitioning(false); // Start fade in
+		}, 300);
 	};
 
 	const getResult = () => {
@@ -421,12 +428,16 @@ export default function PersonalityTest() {
 							{questions[currentQuestion].question}
 						</h2>
 
-						<div className='space-y-4'>
+						<div
+							className={`space-y-4 ${
+								isTransitioning ? "opacity-0" : "opacity-100"
+							}`}
+						>
 							{questions[currentQuestion].answers.map((answer, index) => (
 								<button
-									key={index}
+									key={`${questions[currentQuestion].id}-${index}`}
 									onClick={() => handleAnswer(answer.type)}
-									className='w-full text-left p-4 rounded-2xl border-2 border-gray-200 hover:border-pink-300 hover:bg-pink-50/80 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent'
+									className='w-full text-left p-4 rounded-2xl border-2 border-gray-200 hover:border-pink-300 hover:bg-pink-50/80 transition-all duration-100 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent '
 								>
 									<span className='text-gray-700 font-medium'>
 										{answer.text}
