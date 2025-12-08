@@ -13,7 +13,7 @@ export default function PageContainer({
 }: PageContainerProps) {
 	return (
 		<motion.div
-			className={`p-1 md:p-12 w-full max-w-4xl mx-auto flex-1 flex flex-col  ${className}`}
+			className={`p-1 md:p-12 w-full max-w-5xl mx-auto flex-1 flex flex-col  ${className}`}
 			initial={{ opacity: 0 }}
 			animate={{ opacity: 1 }}
 			transition={{ duration: 0.6 }}

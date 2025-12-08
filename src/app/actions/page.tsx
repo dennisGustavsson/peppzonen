@@ -167,7 +167,7 @@ export default function Actions() {
 	return (
 		<AppLayout>
 			<PageContainer>
-				<div className='text-center mb-12'>
+				<div className='text-center mb-12 mt-10 md:mt-5 '>
 					<h1
 						className='text-4xl font-bold mb-4'
 						style={{ color: "var(--wine-plum-700)" }}
@@ -185,93 +185,7 @@ export default function Actions() {
 						skifta fokus en stund.
 					</p>
 				</div>
-				{/* <motion.div
-					className='bg-white/90 backdrop-blur-md border rounded-2xl sm:rounded-[3rem] shadow-xl/10 pt-8 sm:mt-3 mt-8 sm:pt-12 px-6 sm:px-16 pb-12 sm:pb-16 flex-1 flex flex-col'
-					initial={{ scale: 0.9, opacity: 0 }}
-					animate={{ scale: 1, opacity: 1 }}
-					transition={{ duration: 0.5, delay: 0.2 }}
-				>
-					<div className='flex-1 flex flex-col justify-center'>
-						<div className='flex items-center justify-center gap-3 mb-6'>
-							<h2
-								className='text-3xl sm:text-4xl font-bold text-center'
-								style={{ color: "var(--pitch-black-800)" }}
-							>
-								5-minuters peppboost
-							</h2>
-						</div>
-						<AnimatePresence mode='wait'>
-							<motion.div
-								key={currentQuickWin}
-								initial={{ opacity: 0, y: 20 }}
-								animate={{ opacity: 1, y: 0 }}
-								exit={{ opacity: 0, y: -20 }}
-								transition={{ duration: 0.4 }}
-								className='text-center'
-							>
-								<p
-									className='text-lg sm:text-xl mb-6'
-									style={{ color: "var(--pitch-black-700)" }}
-								>
-									Prova den här enkla aktiviteten just nu:
-								</p>
-								<p
-									className='text-2xl sm:text-3xl font-semibold mb-8'
-									style={{ color: "var(--pitch-black-800)" }}
-								>
-									{currentQuickWin}
-								</p>
-								<div className='flex justify-center items-center gap-4 flex-wrap'>
-									<motion.button
-										onClick={() => setCurrentQuickWin(getRandomQuickWin())}
-										className='text-white px-8 py-4 rounded-full text-lg font-semibold shadow-lg'
-										style={{
-											background: `linear-gradient(45deg, var(--baltic-blue-500), var(--frosted-mint-500))`,
-										}}
-										whileHover={{ scale: 1.02 }}
-										whileTap={{ scale: 0.98 }}
-									>
-										<RefreshCw className='w-5 h-5 inline mr-2' />
-										Ny aktivitet
-									</motion.button>
-									<label
-										className='flex items-center gap-3 cursor-pointer select-none group'
-										style={{ color: "var(--pitch-black-800)" }}
-									>
-										<input
-											type='checkbox'
-											className='peer sr-only'
-											checked={completedActions.has(currentQuickWin)}
-											onChange={() => toggleAction(currentQuickWin)}
-											aria-label='Markera aktiviteten som klar'
-										/>
-										<motion.div
-											whileHover={{ scale: 1.05 }}
-											whileTap={{ scale: 0.95 }}
-											className='w-7 h-7 rounded-md border-2 flex items-center justify-center transition-colors
-                border-pitch-black-400 peer-checked:border-frosted-mint-600
-                peer-checked:bg-frosted-mint-500 bg-white/80 backdrop-blur'
-											style={{
-												borderColor: completedActions.has(currentQuickWin)
-													? "var(--frosted-mint-600)"
-													: "var(--pitch-black-400)",
-											}}
-										>
-											{completedActions.has(currentQuickWin) && (
-												<Check className='w-4 h-4' style={{ color: "white" }} />
-											)}
-										</motion.div>
-										<span className='text-lg font-medium'>
-											{completedActions.has(currentQuickWin)
-												? "Klart!"
-												: "Markera som klar"}
-										</span>
-									</label>
-								</div>
-							</motion.div>
-						</AnimatePresence>
-					</div>
-				</motion.div> */}
+
 				{/* Categories Section */}
 				<motion.div
 					className='mt-8'
@@ -285,7 +199,7 @@ export default function Actions() {
 					>
 						Välj din kategori
 					</h3>
-					<div className='grid sm:grid-cols-2 lg:grid-cols-3 gap-4'>
+					<div className='grid sm:grid-cols-2 lg:grid-cols-3 gap-4 '>
 						{moodBoosters.map((category, index) => (
 							<motion.button
 								key={index}
@@ -334,8 +248,8 @@ export default function Actions() {
 								initial={{ opacity: 0, height: 0 }}
 								animate={{ opacity: 1, height: "auto" }}
 								exit={{ opacity: 0, height: 0 }}
-								transition={{ duration: 0.3 }}
-								className='mt-8 bg-white/90 backdrop-blur-md rounded-2xl sm:rounded-[3rem] shadow-lg p-6 sm:p-8'
+								transition={{ duration: 0.1 }}
+								className='mt-8 bg-white/90 backdrop-blur-md rounded-2xl sm:rounded-[3rem] shadow-lg p-6 sm:p-8 max-w-6xl mx-auto'
 							>
 								<div className='flex items-center justify-center gap-3 mb-6'>
 									{(() => {

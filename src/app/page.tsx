@@ -1,152 +1,77 @@
 "use client";
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "motion/react";
-import AppLayout from "@/components/AppLayout";
-import PageContainer from "@/components/PageContainer";
-import { Heart, RefreshCw } from "lucide-react";
+import Link from "next/link";
+import AppLayout from "@/components/AppLayout"; // Antar att du har denna
+import PageContainer from "@/components/PageContainer"; // Antar att du har denna
 
-const upliftingQuotes = [
-	"Ett 'nej' är bara data. Det säger ingenting om ditt värde eller ditt nästa 'ja'.",
-	"Det kommer att vända. Det kanske inte känns så nu, men det kommer att vända.",
-	"Dagens 'nej' är väldigt ofta morgondagens 'tur att det inte blev så'.",
-	"Du samlar erfarenheter, inte misslyckanden.",
-	"Ditt CV är ett dokument. Du är kompetensen.",
-	"Du söker ett jobb. Du ber inte om en allmosa.",
-	"Varje ansökan du skickar är ett bevis på din uthållighet. Det är en superkraft. 💪",
-	"Glöm inte: Du intervjuar dem precis lika mycket som de intervjuar dig.",
-	"Ta en paus. Stäng datorn. Det här är en mara, inte en sprint.",
-	"Att söka jobb är ett heltidsjobb i sig. Ett du dessutom gör gratis. Var stolt över din uthållighet.",
-	"Kom ihåg: Du har klarat 100% av dina svåraste dagar hittills. Du klarar den här också.",
-	"Någon där ute letar *exakt* efter din unika mix av kompetens och personlighet. Ditt jobb är att fortsätta vara synlig.",
-	"Det handlar inte om att hitta *ett* jobb. Det handlar om att hitta *rätt* jobb. Ett 'nej' från fel ställe är en vinst.",
-	"Det enda 'ja' du behöver är det som faktiskt känns rätt i magen. Låt alla andra 'nej' passera.",
-	"Ditt värde mäts inte i antal svar, utan i kvaliteten på det arbete du *kan* utföra.",
-	"Viktig påminnelse: Du är smart, du är kapabel och du förtjänar en bra arbetsplats. ✨",
-	"Var snäll mot dig själv. Du gör ditt bästa i en riktigt tuff situation. ❤️",
-	"Du är mer än ditt CV. Du är mer än din jobbtitel.",
-	"En paus är inte att ge upp. Det är att ladda om. 🔋",
-	"Någonstans finns en arbetsgivare som kommer att ha *turen* att få dig. Glöm inte det.",
-	"Din kompetens och dina erfarenheter är 100% verkliga. De försvinner inte av ett 'nej'.",
-	"Det kommer att kännas värt det när du väl landar på rätt plats.",
-	"Fira varje litet framsteg. Även att bara orka öppna datorn idag. Du är grym.",
-];
-
-export default function Home() {
-	const [currentQuote, setCurrentQuote] = useState("");
-	const [isLoading, setIsLoading] = useState(true);
-	const [isButtonHovered, setIsButtonHovered] = useState(false);
-
-	// Button styling based on hover state
-	const buttonStyle = {
-		background: isButtonHovered
-			? `linear-gradient(45deg, var(--baltic-blue-700), var(--frosted-mint-300))`
-			: `linear-gradient(45deg, var(--baltic-blue-500), var(--frosted-mint-500))`,
-		backgroundSize: isButtonHovered ? "200% 200%" : "300% 300%",
-		backgroundPosition: isButtonHovered ? "100% 0%" : "0% 0%",
-		transition: "all 0.6s ease",
-	};
-
-	useEffect(() => {
-		const randomQuote =
-			upliftingQuotes[Math.floor(Math.random() * upliftingQuotes.length)];
-		setCurrentQuote(randomQuote);
-		setIsLoading(false);
-	}, []);
-
-	const getNewQuote = () => {
-		setIsLoading(true);
-		setTimeout(() => {
-			const randomQuote =
-				upliftingQuotes[Math.floor(Math.random() * upliftingQuotes.length)];
-			setCurrentQuote(randomQuote);
-			setIsLoading(false);
-		}, 300);
-	};
-
+export default function HomePage() {
 	return (
 		<AppLayout>
 			<PageContainer>
-				{/* Quote Container */}
+				{/* Hero Section */}
+				<div className='flex flex-col items-center justify-center text-center min-h-[70vh] py-12'>
+					{/* En liten "badge" ovanför titeln för att sätta tonen */}
+					<div className='inline-block px-4 py-1.5 mb-6 bg-purple-100 text-purple-800 rounded-full text-sm font-semibold tracking-wide shadow-sm backdrop-blur-md border border-purple-200/50'>
+						För oss som kämpar på arbetsmarknaden
+					</div>
 
-				<motion.div
-					className='bg-white/20 backdrop-blur-md rounded-2xl sm:rounded-[3rem] shadow-xl/5 pt-8 sm:mt-3 mt-8 sm:pt-12 px-8 sm:px-16 pb-12 sm:pb-16 flex-1 flex items-center justify-center'
-					initial={{ scale: 0.9, opacity: 0 }}
-					animate={{ scale: 1, opacity: 1 }}
-					transition={{ duration: 0.5, delay: 0.2 }}
-				>
-					<motion.div className='w-full flex items-center justify-center'>
-						<AnimatePresence mode='wait'>
-							{isLoading ? (
-								<motion.div
-									className='text-lg sm:text-2xl text-gray-500 text-center'
-									initial={{ opacity: 0 }}
-									animate={{ opacity: 1 }}
-									exit={{ opacity: 0 }}
-									transition={{ duration: 0.3 }}
-								>
-									Loading your dose of positivity... ✨
-								</motion.div>
-							) : (
-								<motion.blockquote
-									className='text-2xl sm:text-4xl lg:text-5xl text-gray-700 font-medium leading-relaxed text-center'
-									initial={{ opacity: 0, y: 20 }}
-									animate={{ opacity: 1, y: 0 }}
-									exit={{ opacity: 0, y: -20 }}
-									transition={{ duration: 0.4, ease: "easeOut" }}
-									key={currentQuote}
-								>
-									{currentQuote}
-								</motion.blockquote>
-							)}
-						</AnimatePresence>
-					</motion.div>
-				</motion.div>
+					{/* Huvudrubrik - Stor, tydlig och emotionell */}
+					<h1 className='text-4xl md:text-7xl font-extrabold text-gray-900 tracking-tight mb-8 leading-tight max-w-4xl'>
+						Jobbsökandet är en storm. <br />
+						<span className='text-transparent text-7xl bg-clip-text bg-linear-to-r from-purple-600 to-orange-500'>
+							Här är ditt andrum.
+						</span>
+					</h1>
 
-				{/* Button Container */}
-				<motion.div
-					className='text-center'
-					initial={{ opacity: 0, y: 20 }}
-					animate={{ opacity: 1, y: 0 }}
-					transition={{ duration: 0.5, delay: 0.4 }}
-				>
-					<motion.button
-						onClick={getNewQuote}
-						disabled={isLoading}
-						className='text-white my-8 px-8 sm:px-12 py-4 sm:py-6 rounded-full text-lg sm:text-2xl font-semibold cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed shadow-lg relative overflow-hidden'
-						style={buttonStyle}
-						onMouseEnter={() => {
-							if (!isLoading) {
-								setIsButtonHovered(true);
-							}
-						}}
-						onMouseLeave={() => {
-							if (!isLoading) {
-								setIsButtonHovered(false);
-							}
-						}}
-						whileHover={{
-							scale: 1.02,
-							transition: { duration: 0.2, ease: "easeOut" },
-						}}
-						whileTap={{ scale: 0.98 }}
-					>
-						{isLoading ? (
-							"Laddar ny pepp..."
-						) : (
-							<>
-								<RefreshCw className='w-5 h-5 inline mr-3' />
-								Dags för mer motivation?
-							</>
-						)}
-					</motion.button>
-				</motion.div>
-				<div
-					className='text-xs mt-4 text-center'
-					style={{ color: "var(--tangerine-dream-600)" }}
-				>
-					Ta några djupa andetag. Vila om du behöver. Sen kämpar du vidare.
+					{/* Underrubrik - Förklarar syftet kortfattat */}
+					<p className='text-xl md:text-2xl text-gray-700 max-w-2xl mb-12 leading-relaxed'>
+						Trött på kalla auto-svar och tystnad? Vi har skapat en frizon från
+						algoritmer, där du kan hämta kraft, perspektiv och lite välbehövlig
+						mänsklig pepp.
+					</p>
+
+					{/* CTA-Knapp (Huvudfokus) */}
+					<div className='flex flex-col sm:flex-row gap-6 items-center w-full justify-center'>
+						{/* Länka denna till sidan där citat-generatorn finns (t.ex. /pepp) */}
+						<Link
+							href='/boost'
+							className='group relative inline-flex items-center justify-center px-10 py-5 text-xl font-bold text-white transition-all duration-200 bg-gray-900 rounded-full hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 shadow-lg hover:shadow-xl transform hover:-translate-y-1 w-full sm:w-auto'
+						>
+							<span>Jag behöver en boost nu!</span>
+							{/* En liten pil som animeras vid hover */}
+							<svg
+								className='w-6 h-6 ml-3 transition-transform duration-200 group-hover:translate-x-1'
+								fill='none'
+								viewBox='0 0 24 24'
+								stroke='currentColor'
+							>
+								<path
+									strokeLinecap='round'
+									strokeLinejoin='round'
+									strokeWidth='2'
+									d='M13 7l5 5m0 0l-5 5m16-5H3'
+								/>
+							</svg>
+
+							{/* En subtil "glöd" bakom knappen */}
+							<div className='absolute -inset-0.5 bg-linear-to-r from-purple-600 to-orange-500 rounded-full blur-sm opacity-30 group-hover:opacity-60 transition duration-200 -z-10'></div>
+						</Link>
+
+						{/* Sekundär knapp (t.ex. till testet eller "om oss") */}
+						<Link
+							href='/personality-test'
+							className='px-8 py-4 text-lg font-semibold text-gray-700 transition-all duration-200 bg-white/50 backdrop-blur-md border-2 border-gray-200 rounded-full hover:bg-white/80 hover:border-gray-300 focus:outline-none shadow-sm hover:shadow-md w-full sm:w-auto'
+						>
+							Ta absurditets-testet
+						</Link>
+					</div>
+
+					{/* En liten "trust signal" längst ner */}
+					<p className='mt-16 text-gray-500 text-sm uppercase tracking-widest font-semibold'>
+						Inga loggar. Inga data sparas. Bara ren pepp.
+					</p>
 				</div>
 			</PageContainer>
 		</AppLayout>
 	);
 }
+

@@ -38,7 +38,7 @@ export default function Support() {
 	return (
 		<AppLayout>
 			<PageContainer>
-				<div className='text-center mb-12'>
+				<div className='text-center mt-10 md:mt-5 mb-12'>
 					<h1
 						className='text-4xl font-bold mb-4'
 						style={{ color: "var(--wine-plum-700)" }}

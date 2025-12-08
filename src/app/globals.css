@@ -13,13 +13,32 @@
 }
 
 .custombackground {
-	background: #ffb3d0;
-	background: radial-gradient(
-		circle,
-		rgba(255, 179, 208, 1) 0%,
-		rgba(232, 206, 186, 1) 51%,
-		rgba(255, 255, 255, 1) 100%
-	);
+	background: #fefcff;
+
+	background-image: radial-gradient(
+			circle at 30% 70%,
+			rgba(173, 216, 230, 0.35),
+			transparent 60%
+		),
+		radial-gradient(
+			circle at 70% 30%,
+			rgba(255, 182, 193, 0.4),
+			transparent 60%
+		);
+	background-size: 180% 180%;
+	animation: gradient-wave 18s ease-in-out infinite;
+}
+
+@keyframes gradient-wave {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 70%;
+	}
+	100% {
+		background-position: 0% 60%;
+	}
 }
 
 /* Color palette for CheerMeUp website */
