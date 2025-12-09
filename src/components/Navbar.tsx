@@ -24,15 +24,7 @@ export default function Navbar() {
 					style={{ color: "var(--pitch-black-800)" }}
 					onClick={closeMobileMenu}
 				>
-					<h1 className='flex items-baseline'>
-						{" "}
-						{/* <Heart
-							className='inline animate-pulse mr-1'
-							style={{ color: "var(--frosted-mint-400)" }}
-							fill='currentColor'
-						/> */}
-						Peppzonen{" "}
-					</h1>
+					<h1 className='flex items-baseline font-black'>Peppzonen</h1>
 				</Link>
 
 				{/* Desktop Menu */}

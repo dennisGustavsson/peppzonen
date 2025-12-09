@@ -170,7 +170,7 @@ export default function Actions() {
 				<div className='text-center mb-12 mt-10 md:mt-5 '>
 					<h1
 						className='text-4xl font-bold mb-4'
-						style={{ color: "var(--wine-plum-700)" }}
+						style={{ color: "var(--wine-plum-800)" }}
 					>
 						Behöver du en snabb aktivitet för att skifta fokus?
 						<Heart
@@ -248,8 +248,8 @@ export default function Actions() {
 								initial={{ opacity: 0, height: 0 }}
 								animate={{ opacity: 1, height: "auto" }}
 								exit={{ opacity: 0, height: 0 }}
-								transition={{ duration: 0.1 }}
-								className='mt-8 bg-white/90 backdrop-blur-md rounded-2xl sm:rounded-[3rem] shadow-lg p-6 sm:p-8 max-w-6xl mx-auto'
+								transition={{ duration: 0.2 }}
+								className='mt-8 bg-white/90 backdrop-blur-md rounded-2xl sm:rounded-[3rem] shadow-lg p-6 sm:p-8 max-w-6xl mx-auto overflow-hidden'
 							>
 								<div className='flex items-center justify-center gap-3 mb-6'>
 									{(() => {

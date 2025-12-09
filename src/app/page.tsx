@@ -17,7 +17,7 @@ export default function HomePage() {
 					{/* Huvudrubrik - Stor, tydlig och emotionell */}
 					<h1 className='text-4xl md:text-7xl font-extrabold text-gray-900 tracking-tight mb-8 leading-tight max-w-4xl'>
 						Jobbsökandet är en storm. <br />
-						<span className='text-transparent text-7xl bg-clip-text bg-linear-to-r from-purple-600 to-orange-500'>
+						<span className='text-transparent font-black text-7xl bg-clip-text bg-linear-to-r from-purple-600 to-orange-500'>
 							Här är ditt andrum.
 						</span>
 					</h1>
@@ -66,12 +66,11 @@ export default function HomePage() {
 					</div>
 
 					{/* En liten "trust signal" längst ner */}
-					<p className='mt-16 text-gray-500 text-sm uppercase tracking-widest font-semibold'>
+					{/* <p className='mt-16 text-gray-500 text-xs font-mono uppercase tracking-widest'>
 						Inga loggar. Inga data sparas. Bara ren pepp.
-					</p>
+					</p> */}
 				</div>
 			</PageContainer>
 		</AppLayout>
 	);
 }
-

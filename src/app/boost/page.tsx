@@ -126,11 +126,11 @@ export default function BoostPage() {
 									exit={{ opacity: 0 }}
 									transition={{ duration: 0.3 }}
 								>
-									Loading your dose of positivity... ✨
+									Laddar ny pepp!!
 								</motion.div>
 							) : (
 								<motion.blockquote
-									className='text-4xl sm:text-4xl lg:text-5xl text-gray-700 font-medium leading-relaxed text-center'
+									className='text-4xl sm:text-4xl lg:text-5xl text-gray-700 font-black leading-relaxed text-center'
 									initial={{ opacity: 0, y: 20 }}
 									animate={{ opacity: 1, y: 0 }}
 									exit={{ opacity: 0, y: -20 }}

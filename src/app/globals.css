@@ -44,70 +44,45 @@
 /* Color palette for CheerMeUp website */
 :root {
 	/* Baltic Blue */
-	--baltic-blue-50: #eef2f7;
 	--baltic-blue-100: #dde5ee;
-	--baltic-blue-200: #bacbde;
-	--baltic-blue-300: #98b2cd;
-	--baltic-blue-400: #7598bd;
 	--baltic-blue-500: #537eac;
-	--baltic-blue-600: #42658a;
 	--baltic-blue-700: #324c67;
-	--baltic-blue-800: #213245;
 	--baltic-blue-900: #111922;
 	--baltic-blue-950: #0c1218;
 
 	/* Frosted Mint */
 	--frosted-mint-50: #e9fde7;
 	--frosted-mint-100: #d4fccf;
-	--frosted-mint-200: #a8f99f;
 	--frosted-mint-300: #7df66f;
 	--frosted-mint-400: #51f33f;
 	--frosted-mint-500: #26f00f;
 	--frosted-mint-600: #1ec00c;
 	--frosted-mint-700: #179009;
 	--frosted-mint-800: #0f6006;
-	--frosted-mint-900: #083003;
-	--frosted-mint-950: #052202;
 
 	/* Tangerine Dream */
 	--tangerine-dream-50: #f9f5ee;
 	--tangerine-dream-100: #f3ebdd;
-	--tangerine-dream-200: #e7d7bb;
-	--tangerine-dream-300: #dbc399;
-	--tangerine-dream-400: #cfaf77;
 	--tangerine-dream-500: #d3b588;
 	--tangerine-dream-600: #a9916d;
 	--tangerine-dream-700: #7f6d52;
-	--tangerine-dream-800: #544937;
-	--tangerine-dream-900: #2a241b;
-	--tangerine-dream-950: #1d1913;
 
-	/* Wine Plum */
-	--wine-plum-50: #f8ecef;
-	--wine-plum-100: #f1dadf;
-	--wine-plum-200: #e4b4bf;
-	--wine-plum-300: #d68f9f;
-	--wine-plum-400: #c9697f;
-	--wine-plum-500: #bb4460;
-	--wine-plum-600: #96364c;
-	--wine-plum-700: #702939;
-	--wine-plum-800: #4b1b26;
-	--wine-plum-900: #250e13;
-	--wine-plum-950: #1a090d;
+	/* Wine Plum (relabelled as dark gray ramp) */
+	--wine-plum-50: #f5f5f5;
+	--wine-plum-100: #ebebeb;
+	--wine-plum-400: #a1a1a1;
+	--wine-plum-500: #7d7d7d;
+	--wine-plum-600: #5f5f5f;
+	--wine-plum-700: #3e3e3e;
+	--wine-plum-800: #232323;
 
 	/* Pitch Black */
 
-	--pitch-black-950: #191919ff;
-	--pitch-black-900: #323232;
-	--pitch-black-800: #4b4b4b;
-	--pitch-black-700: #646464;
-	--pitch-black-600: #7d7d7d;
-	--pitch-black-500: #969696;
-	--pitch-black-400: #afafaf;
-	--pitch-black-300: #c8c8c8;
 	--pitch-black-200: #e1e1e1;
-	--pitch-black-100: #f0f0f0;
-	--pitch-black-50: #f8f8f8;
+	--pitch-black-400: #afafaf;
+	--pitch-black-600: #7d7d7d;
+	--pitch-black-700: #646464;
+	--pitch-black-800: #4b4b4b;
 
 	/* Theme colors */
 	--background: var(--frosted-mint-50);
@@ -158,10 +133,16 @@
 	);
 }
 
+html,
+body {
+	min-height: 100dvh;
+}
+
 body {
 	background: var(--background);
 	color: var(--foreground);
 	font-family: var(--font-inter), "Inter", Arial, Helvetica, sans-serif;
+	margin: 0;
 }
 
 /* Apply Lilita One to headings */
@@ -169,7 +150,7 @@ h1,
 h2,
 .font-dm-sans {
 	font-family: var(--font-dm-sans), "DM Sans", sans-serif !important;
-	font-weight: 600;
+	font-weight: 800;
 }
 
 button {
