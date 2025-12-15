@@ -11,7 +11,6 @@ const upliftingQuotes = [
 	"Dagens 'nej' är väldigt ofta morgondagens 'tur att det inte blev så'.",
 	"Du samlar erfarenheter, inte misslyckanden.",
 	"Du är inte ensam!",
-
 	"Varje ansökan du skickar är ett bevis på din uthållighet. Det är en superkraft. 💪",
 	"Ta en paus. Stäng datorn. Det här är en mara, inte en sprint.",
 	"Att söka jobb är ett heltidsjobb i sig. Ett du dessutom gör gratis. Var stolt över din uthållighet.",
@@ -47,7 +46,6 @@ const upliftingQuotes = [
 	"Fokusera på det du kan kontrollera: Din insats, din vila och dina tankar om dig själv. Resten är slump och tajming.",
 	"Du är smart, du är kapabel och du förtjänar en arbetsplats som ser ditt värde. Nöj dig inte med mindre i tanken!",
 	"En paus är inte att ge upp. Det är strategisk återhämtning. Stäng datorn med gott samvete.",
-	"Världen är full av mediokra chefer. Du behöver bara hitta EN bra som fattar grejen. Håll ut.",
 	"Du gör ett hästjobb i motvind! Glöm inte att klappa dig själv på axeln för att du står kvar.",
 ];
 
