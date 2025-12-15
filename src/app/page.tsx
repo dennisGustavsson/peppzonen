@@ -61,7 +61,7 @@ export default function HomePage() {
 							href='/personality-test'
 							className='px-8 py-4 text-lg font-semibold text-gray-700 transition-all duration-200 bg-white/50 backdrop-blur-md border-2 border-gray-200 rounded-full hover:bg-white/80 hover:border-gray-300 focus:outline-none shadow-sm hover:shadow-md w-full sm:w-auto'
 						>
-							Ta absurditets-testet
+							Ta opersonlighets-testet
 						</Link>
 					</div>
 
