@@ -1,12 +1,11 @@
 "use client";
-import { use, useEffect, useRef, useState } from "react";
-import { motion, AnimatePresence, useReducedMotion } from "motion/react";
+import { useEffect, useRef, useState } from "react";
+import { motion, AnimatePresence } from "motion/react";
 import AppLayout from "@/components/AppLayout";
 import ModalComponent from "@/components/ModalComponent";
 import PageContainer from "@/components/PageContainer";
 import {
 	Sparkles,
-	RefreshCw,
 	Activity,
 	Palette,
 	Users,
@@ -15,7 +14,6 @@ import {
 	Heart,
 	Check,
 	Circle,
-	Zap,
 	X,
 } from "lucide-react";
 
@@ -99,19 +97,6 @@ const moodBoosters = [
 	},
 ];
 
-const quickWins = [
-	"Bädda din säng",
-	"Drick ett glas vatten",
-	"Le mot dig själv i spegeln",
-	"Ta tre djupa andetag",
-	"Städa ett litet område",
-	"Sms:a någon du uppskattar",
-	"Gå ut för frisk luft",
-	"Lyssna på en upplyftande låt",
-	"Skriv ner en sak du är tacksam för",
-	"Stretcha i en minut",
-];
-
 export default function Actions() {
 	const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
 	const [completedActions, setCompletedActions] = useState(new Set<string>());
@@ -150,8 +135,12 @@ export default function Actions() {
 			clearTimeout(dismissTimerRef.current);
 			dismissTimerRef.current = null;
 		}
+
+		let immediateTimerId: number | null = null;
 		if (completedActions.size > 0) {
-			setShowProgressToast(true);
+			immediateTimerId = window.setTimeout(() => {
+				setShowProgressToast(true);
+			}, 0);
 			// Auto-dismiss after 4s
 			dismissTimerRef.current = window.setTimeout(() => {
 				setShowProgressToast(false);
@@ -159,12 +148,18 @@ export default function Actions() {
 			}, 3000);
 		} else {
 			// Hide immediately when no actions
-			setShowProgressToast(false);
+			immediateTimerId = window.setTimeout(() => {
+				setShowProgressToast(false);
+			}, 0);
 		}
 
 		return () => {
+			if (immediateTimerId) {
+				clearTimeout(immediateTimerId);
+			}
 			if (dismissTimerRef.current) {
 				clearTimeout(dismissTimerRef.current);
+				dismissTimerRef.current = null;
 			}
 		};
 	}, [completedActions.size]);

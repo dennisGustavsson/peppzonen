@@ -331,12 +331,12 @@ export default function PersonalityTest() {
 								<li>
 									<strong>Total irrelevans:</strong> Frågorna om Rubiks kuber
 									och gem skapar scenarier så långt från verkligheten att de
-									blir meningslösa, bara för att 'mäta' kreativitet.
+									blir meningslösa, bara för att &apos;mäta&apos; kreativitet.
 								</li>
 								<li>
 									<strong>Omöjliga dygder:</strong> Valen tvingar dig att välja
 									mellan absurd arrogans eller obehörig innovation. Det är ren
-									'Catch-22'-logik.
+									&apos;Catch-22&apos;-logik.
 								</li>
 								<li>
 									<strong>Pseudovetenskap:</strong> Att koppla geometriska

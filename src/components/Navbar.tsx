@@ -2,9 +2,13 @@
 import Link from "next/link";
 import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import { Heart, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 
-export default function Navbar() {
+interface NavbarProps {
+	onOpenBoxBreathing?: () => void;
+}
+
+export default function Navbar({ onOpenBoxBreathing }: NavbarProps) {
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
 	const toggleMobileMenu = () => {
@@ -13,6 +17,10 @@ export default function Navbar() {
 
 	const closeMobileMenu = () => {
 		setIsMobileMenuOpen(false);
+	};
+
+	const handleOpenBoxBreathing = () => {
+		onOpenBoxBreathing?.();
 	};
 
 	return (
@@ -29,6 +37,13 @@ export default function Navbar() {
 
 				{/* Desktop Menu */}
 				<div className='hidden md:flex space-x-6 '>
+					<button
+						type='button'
+						onClick={handleOpenBoxBreathing}
+						className='text-wine-600 hover:text-wine-700 transition-colors font-semibold'
+					>
+						Boxandning
+					</button>
 					<Link
 						href='/support'
 						className='text-wine-600 hover:text-wine-700 transition-colors font-semibold'
@@ -93,6 +108,16 @@ export default function Navbar() {
 						transition={{ duration: 0.35 }}
 					>
 						<div className='px-4 py-4 space-y-2'>
+							<button
+								type='button'
+								onClick={() => {
+									closeMobileMenu();
+									handleOpenBoxBreathing();
+								}}
+								className='w-full text-left block py-3 px-4 text-wine-600 hover:text-wine-700 hover:bg-gray-50 rounded-lg transition-colors font-semibold'
+							>
+								Box breathing
+							</button>
 							<Link
 								href='/support'
 								className='block py-3 px-4 text-wine-600 hover:text-wine-700 hover:bg-gray-50 rounded-lg transition-colors font-semibold'

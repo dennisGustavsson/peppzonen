@@ -1,4 +1,7 @@
+"use client";
+
 import { useEffect, useState, useCallback, ReactNode } from "react";
+import { motion } from "motion/react";
 
 interface ModalComponentProps {
 	shouldShow: boolean;
@@ -12,15 +15,13 @@ const ModalComponent = ({
 	children,
 }: ModalComponentProps) => {
 	const [isClosing, setIsClosing] = useState(false);
+	const [hasRequestedClose, setHasRequestedClose] = useState(false);
 
 	const handleClose = useCallback(() => {
 		if (isClosing) return; // Prevent multiple calls
 		setIsClosing(true);
-		setTimeout(() => {
-			setIsClosing(false);
-			onRequestClose();
-		}, 200); // Shorter timeout
-	}, [onRequestClose, isClosing]);
+		setHasRequestedClose(true);
+	}, [isClosing]);
 
 	useEffect(() => {
 		if (!shouldShow) return;
@@ -53,20 +54,28 @@ const ModalComponent = ({
 	}
 
 	return (
-		<div
-			className={`modal p-1 md:p-40 ${
-				isClosing ? "modal-bg-out" : "modal-bg-in"
-			}`}
+		<motion.div
+			className='modal modal-background p-1 md:p-40'
 			onClick={handleClose}
 			role='dialog'
 			aria-modal='true'
+			initial={{ opacity: 0 }}
+			animate={{ opacity: isClosing ? 0 : 1 }}
+			transition={{ duration: 0.25, ease: "easeOut" }}
 		>
-			<div
-				className={` flex justify-center flex-col ${
-					isClosing ? "modal-close" : "modal-appear"
-				}`}
+			<motion.div
+				className='flex justify-center flex-col'
 				onClick={(e) => {
 					e.stopPropagation();
+				}}
+				initial={{ y: 24, opacity: 0 }}
+				animate={{ y: isClosing ? 24 : 0, opacity: isClosing ? 0 : 1 }}
+				transition={{ duration: 0.25, ease: "easeOut" }}
+				onAnimationComplete={() => {
+					if (!hasRequestedClose) return;
+					setHasRequestedClose(false);
+					setIsClosing(false);
+					onRequestClose();
 				}}
 			>
 				{children}
@@ -77,8 +86,8 @@ const ModalComponent = ({
 				>
 					&times;
 				</button>
-			</div>
-		</div>
+			</motion.div>
+		</motion.div>
 	);
 };
 

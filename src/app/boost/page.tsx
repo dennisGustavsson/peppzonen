@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence, useAnimation } from "motion/react";
 import AppLayout from "@/components/AppLayout";
 import PageContainer from "@/components/PageContainer";
-import { Heart, RefreshCw } from "lucide-react";
+import { RefreshCw } from "lucide-react";
 
 const upliftingQuotes = [
 	"Ett 'nej' är bara data. Det säger ingenting om ditt värde eller ditt nästa 'ja'.",
@@ -66,10 +66,16 @@ export default function BoostPage() {
 	};
 
 	useEffect(() => {
-		const randomQuote =
-			upliftingQuotes[Math.floor(Math.random() * upliftingQuotes.length)];
-		setCurrentQuote(randomQuote);
-		setIsLoading(false);
+		const id = window.setTimeout(() => {
+			const randomQuote =
+				upliftingQuotes[Math.floor(Math.random() * upliftingQuotes.length)];
+			setCurrentQuote(randomQuote);
+			setIsLoading(false);
+		}, 0);
+
+		return () => {
+			window.clearTimeout(id);
+		};
 	}, []);
 
 	useEffect(() => {

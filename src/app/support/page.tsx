@@ -8,7 +8,6 @@ import {
 	MessageCircle,
 	Users,
 	Phone,
-	Lightbulb,
 	Brain,
 	Activity,
 } from "lucide-react";
@@ -120,7 +119,7 @@ export default function Support() {
 									<span className='font-bold mt-0.5'>•</span>
 									<div>
 										<span className='font-semibold'>Skilj på plats:</span> Sök
-										inte jobb i soffan. Hitta en dedikerad "jobbstol".
+										inte jobb i soffan. Hitta en dedikerad &quot;jobbstol&quot;.
 									</div>
 								</li>
 								<li className='flex items-start gap-2'>

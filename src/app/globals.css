@@ -145,14 +145,6 @@ body {
 	margin: 0;
 }
 
-/* Apply Lilita One to headings */
-h1,
-h2,
-.font-dm-sans {
-	font-family: var(--font-dm-sans), "DM Sans", sans-serif !important;
-	font-weight: 800;
-}
-
 button {
 	cursor: pointer;
 }
@@ -174,6 +166,8 @@ button {
 }
 
 /* Apply Inter to all other text */
+h1,
+h2,
 h3,
 h4,
 h5,
