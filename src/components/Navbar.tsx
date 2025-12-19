@@ -40,9 +40,9 @@ export default function Navbar({ onOpenBoxBreathing }: NavbarProps) {
 					<button
 						type='button'
 						onClick={handleOpenBoxBreathing}
-						className='text-wine-600 hover:text-wine-700 transition-colors font-semibold'
+						className='text-wine-600 hover:text-wine-700 transition-colors font-bold'
 					>
-						Boxandning
+						Box-andning
 					</button>
 					<Link
 						href='/support'
@@ -114,9 +114,9 @@ export default function Navbar({ onOpenBoxBreathing }: NavbarProps) {
 									closeMobileMenu();
 									handleOpenBoxBreathing();
 								}}
-								className='w-full text-left block py-3 px-4 text-wine-600 hover:text-wine-700 hover:bg-gray-50 rounded-lg transition-colors font-semibold'
+								className='w-full text-left block py-3 px-4 text-wine-600 hover:text-wine-700 hover:bg-gray-50 rounded-lg transition-colors font-bold'
 							>
-								Box breathing
+								Box-andning
 							</button>
 							<Link
 								href='/support'

@@ -61,7 +61,7 @@ const ModalComponent = ({
 			aria-modal='true'
 			initial={{ opacity: 0 }}
 			animate={{ opacity: isClosing ? 0 : 1 }}
-			transition={{ duration: 0.25, ease: "easeOut" }}
+			transition={{ duration: 0.4, ease: "easeOut" }}
 		>
 			<motion.div
 				className='flex justify-center flex-col'
@@ -70,7 +70,7 @@ const ModalComponent = ({
 				}}
 				initial={{ y: 24, opacity: 0 }}
 				animate={{ y: isClosing ? 24 : 0, opacity: isClosing ? 0 : 1 }}
-				transition={{ duration: 0.25, ease: "easeOut" }}
+				transition={{ duration: 0.4, ease: "easeOut" }}
 				onAnimationComplete={() => {
 					if (!hasRequestedClose) return;
 					setHasRequestedClose(false);

@@ -108,14 +108,14 @@ export default function BoxBreathing({
 
 	return (
 		<div className='w-full max-w-xl mx-auto'>
-			<div className='rounded-3xl bg-white/60 backdrop-blur-md border border-gray-200 shadow-lg/5 p-6 md:p-8'>
+			<div className=' rounded-2xl sm:rounded-[3rem] bg-white/60 backdrop-blur-md border border-gray-200 shadow-lg/5 p-6 md:p-8'>
 				<div className='flex items-start justify-between gap-4'>
 					<div>
 						<h2
 							className='text-2xl md:text-3xl font-black'
 							style={{ color: "var(--pitch-black-800)" }}
 						>
-							Boxandning
+							Box-andning
 						</h2>
 						<p
 							className='mt-1 text-sm md:text-base'

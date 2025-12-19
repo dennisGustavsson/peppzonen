@@ -65,10 +65,6 @@ export default function HomePage() {
 						</Link>
 					</div>
 
-					{/* En liten "trust signal" längst ner */}
-					{/* <p className='mt-16 text-gray-500 text-xs font-mono uppercase tracking-widest'>
-						Inga loggar. Inga data sparas. Bara ren pepp.
-					</p> */}
 				</div>
 			</PageContainer>
 		</AppLayout>
